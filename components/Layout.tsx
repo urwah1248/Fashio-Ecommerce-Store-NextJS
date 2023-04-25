@@ -57,7 +57,7 @@ export default function Layout({ children, titleName="Web Engineering Project", 
           {children}
         </main>
         <footer className="flex h-10 py-3 font-inter justify-center items-center shadow-inner">
-          <p>© Fashio.pk | 2023</p>
+          <p className='m-0'>© Fashio.pk | 2023</p>
         </footer>
       </div>
     </>

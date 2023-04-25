@@ -20,7 +20,7 @@ return (
           <CNavbarBrand className='mx-auto font-extrabold md:indent-0 md:w-fit md:static top-0'>
             <Link href='/'>
               <Image
-                src="/../public/logo.png"
+                src="/logo.png"
                 alt="Picture of the author"
                 width={100}
                 height={50}
