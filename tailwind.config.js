@@ -8,6 +8,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      inter: [
+        "Inter"
+      ],
+    },
     extend: {},
   },
   plugins: [],
