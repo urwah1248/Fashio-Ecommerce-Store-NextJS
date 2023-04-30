@@ -14,8 +14,9 @@ return (
       <CContainer fluid>
           <CNavbarToggler
             aria-label="Toggle navigation"  
-            aria-expanded={visible}
+            aria-expanded={!visible}
             onClick={() => setVisible(!visible)}
+            className='border-none'
           /> 
           <CNavbarBrand className='mx-auto font-extrabold md:indent-0 md:w-fit md:static top-0'>
             <Link href='/'>
@@ -24,7 +25,7 @@ return (
                 alt="Picture of the author"
                 width={100}
                 height={50}
-                className='object-cover h-12'
+                className='object-cover h-12 opacity-70 hover:opacity-100 transition-[500ms]'
               />
             </Link>
           </CNavbarBrand>

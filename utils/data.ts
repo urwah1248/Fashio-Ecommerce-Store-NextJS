@@ -8,7 +8,7 @@ export const data = [
     rating: 4.69,
     stock: 94,
     brand: "Apple",
-    category: "smartphones",
+    category: "rings",
     thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
     images: [
       "https://i.dummyjson.com/data/products/1/1.jpg",
@@ -28,7 +28,7 @@ export const data = [
     rating: 4.44,
     stock: 34,
     brand: "Apple",
-    category: "smartphones",
+    category: "rings",
     thumbnail: "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
     images: [
       "https://i.dummyjson.com/data/products/2/1.jpg",
@@ -47,7 +47,7 @@ export const data = [
     rating: 4.09,
     stock: 36,
     brand: "Samsung",
-    category: "smartphones",
+    category: "rings",
     thumbnail: "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
     images: ["https://i.dummyjson.com/data/products/3/1.jpg"],
   },
@@ -60,7 +60,7 @@ export const data = [
     rating: 4.3,
     stock: 123,
     brand: "OPPO",
-    category: "smartphones",
+    category: "rings",
     thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
     images: [
       "https://i.dummyjson.com/data/products/4/1.jpg",
@@ -80,7 +80,7 @@ export const data = [
     rating: 4.09,
     stock: 32,
     brand: "Huawei",
-    category: "smartphones",
+    category: "rings",
     thumbnail: "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
     images: [
       "https://i.dummyjson.com/data/products/5/1.jpg",

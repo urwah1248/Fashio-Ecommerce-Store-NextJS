@@ -2,18 +2,21 @@ import Head from 'next/head';
 import React, {ReactNode, useEffect, useState} from 'react';
 import Navbar from './Navbar'
 import Announcement from './Announcement'
+import { useTitle } from '@/context/titleContext';
 
 interface Props {
   children?: ReactNode,
-  titleName?: String,
+  title?: String,
   // any props that come into the component
 }
 
 
-export default function Layout({ children, titleName="Web Engineering Project", ...props }: Props) {
+export default function Layout({ children, ...props }: Props) {
   
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true)
+  
+  const { title } = useTitle()
 
   useEffect( () => {
     const handleScroll = () => {
@@ -21,10 +24,8 @@ export default function Layout({ children, titleName="Web Engineering Project", 
 
     if(currentScrollPos > prevScrollPos){
       setVisible(false)
-      console.log(visible)
     }else{
         setVisible(true)
-        console.log(visible)
     }
 
     setPrevScrollPos(currentScrollPos)
@@ -38,17 +39,18 @@ export default function Layout({ children, titleName="Web Engineering Project", 
 }, [prevScrollPos])
 
 
+
   return (
     <>
       <Head>
-        <title>{titleName}</title>
+        <title>{title}</title>
         <meta name="description" content="E commerce Store" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="flex min-h-screen flex-col justify-between">
-        <header className={`fixed w-screen transition-['250ms'] ${visible ? 'top-0  ' : 'top-[-100px]'}`}>
+        <header className={`fixed w-screen transition-['500ms'] ${visible ? 'top-0  ' : 'top-[-100px]'}`}>
           <Announcement/>
           <Navbar/>
         </header>

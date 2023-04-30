@@ -16,8 +16,8 @@ const Product = ({product, ...props}: Props) => {
   }
 
   return (
-    <div className='product-card hover:border-black border-2 sm:w-[304px] w-3/4 mt-4 rounded-md'>
-        <Link href="#" className='text-black'>
+    <div className='product-card hover:scale-105 transition-[250ms] hover:border-black border-2 sm:w-[304px] w-3/4 mt-4 rounded-md'>
+        <Link href={`./product/${product.id}`} className='text-black'>
           <div className="">
             <img  
             src={product.images[0]}
