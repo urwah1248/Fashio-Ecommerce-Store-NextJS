@@ -1,7 +1,26 @@
 import ProductsPage from '@/components/ProductsPage';
 
-export default function Anklets() {
+interface Props{
+  products: Array<any>
+}
+
+export default function Anklets({products}:Props) {
+  
   return (
-    <ProductsPage title="Anklets"></ProductsPage>
+    <ProductsPage title="Anklets" category="laptops" products={products}></ProductsPage>
   )
+}
+
+export const getStaticProps = async () => {
+
+  const res = await fetch(`https://dummyjson.com/products`)
+  const res2 = await res.json()
+  const products = res2.products
+
+  return {
+    props:{
+      products
+    }
+  }
+  
 }

@@ -1,25 +1,45 @@
-// import ProductPage from '@/components/productPage'
-import {useRouter} from 'next/router'
-import { useEffect, useState } from 'react'
 import ProductPage from '@/components/ProductPage'
 import { productDummy } from '@/utils/productDummy'
 
-const page = () => {
-  const id = useRouter().query.id
-  const [product,setProduct] = useState(productDummy)
+interface Props {
+  product?:any,
+  productDummy?:any
+}
 
-  // useEffect(() => {
-  //   fetch(`https://dummyjson.com/products/${id}`)
-  //   .then(res => res.json())
-  //   .then(json => setProduct(json))
-  //   .then(json => console.log(json))
-  // }, [])
+const page = () => {
 
   return (
     <>
-      <ProductPage product={product}/>
+      <ProductPage product={productDummy}/>
     </>
   )
+}
+
+export const getStaticProps = async ({params}) => {
+
+  const res = await fetch(`https://dummyjson.com/products/${params.id}`)
+
+  const product = await res.json()
+
+  return {
+    props:{
+      product,
+      productDummy
+    }
+  }
+  
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { id: '1' }},
+      {
+        params: { id: '2' },
+      },
+    ],
+    fallback: "blocking"
+  }
 }
 
 export default page

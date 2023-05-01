@@ -1,4 +1,19 @@
+import { productDummy } from "./productDummy";
+
 export const data = [
+  productDummy,
+  productDummy,
+  productDummy,
+  productDummy,
+  productDummy,
+  productDummy,
+  productDummy,
+  productDummy,
+  productDummy,
+  productDummy
+]
+
+export const data1 = [
   {
     id: 1,
     title: "iPhone 9",
@@ -574,3 +589,11 @@ export const data = [
     ],
   },
 ];
+
+const fetchData = async () => {
+  const res = await fetch(`https://dummyjson.com/products`)
+  const res2 = await res.json()
+  const products = res2.products
+
+  return products
+}

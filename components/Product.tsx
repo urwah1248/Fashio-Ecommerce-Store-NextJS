@@ -8,7 +8,6 @@ interface Props {
 }
 
 const Product = ({product, ...props}: Props) => {
-  const productPrice:String = String(product.price*280)
   let productImage = product.images[0]
 
   const handleHover = () => {
@@ -24,10 +23,10 @@ const Product = ({product, ...props}: Props) => {
             alt='ujasdh'
             className='w-full h-52 object-cover object-top rounded-md'
             />
-            <h4 className='text-center max-w-full mt-2'>{product.title}</h4>
+            <h4 className='text-center max-w-full mt-2 font-bold'>{product.title}</h4>
           </div>
         </Link>
-        <p className='text-center font-inter text-gray-500 m-0'>Rs.{Comma(productPrice)}</p>
+        <p className='text-center font-inter text-gray-500 m-0'>Rs.{Comma(product.price)}</p>
         <p className='text-center font-inter text-gray-500 m-0'>Rating: {product.rating}</p>
         {/* <div className='flex justify-around mt-2 font-inter'>
           <Button colorScheme='blue' position="static" fontFamily="inherit">Buy Now</Button>
