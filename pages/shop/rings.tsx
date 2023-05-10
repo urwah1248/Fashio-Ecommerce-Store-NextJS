@@ -12,7 +12,7 @@ export default function Rings({products}:Props) {
 }
 
 export const getStaticProps = async () => {
-
+  
   const res = await fetch(`https://dummyjson.com/products`)
   const res2 = await res.json()
   const products = res2.products

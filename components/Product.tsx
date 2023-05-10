@@ -26,7 +26,7 @@ const Product = ({product, ...props}: Props) => {
             <h4 className='text-center max-w-full mt-2 font-bold'>{product.title}</h4>
           </div>
         </Link>
-        <p className='text-center font-inter text-gray-500 m-0'>Rs.{Comma(product.price)}</p>
+        <p className='text-center font-inter text-gray-500 m-0'>${Comma(product.price)}</p>
         <p className='text-center font-inter text-gray-500 m-0'>Rating: {product.rating}</p>
         {/* <div className='flex justify-around mt-2 font-inter'>
           <Button colorScheme='blue' position="static" fontFamily="inherit">Buy Now</Button>

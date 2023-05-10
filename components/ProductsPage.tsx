@@ -20,11 +20,11 @@ export default function ProductsPage({title,category="laptops",products,...props
     <>
       <div className="w-full my-0">
         <h1 className='font-extrabold text-center md:h-32 md:text-8xl my-10'>{title}</h1>
-        <div className="flex gap-3 flex-wrap justify-center w-full mx-auto">
+        <div className="flex gap-3 flex-wrap w-[95%] mx-auto justify-between">
           {
             products
-            .filter( product => product.category == category)
-            .map( item => {
+            .filter( (product:any) => product.category == category)
+            .map( (item:any) => {
               return (
                 <Product key={item.id} product={item}/>
               )

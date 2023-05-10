@@ -42,18 +42,27 @@ const ProductPage = ({product,...props}:Props) => {
           <ButtonGroup>
             {
               product.sizes.map((size:any) => {
-                return <Button key={size.index}>{size}</Button>
+                return (
+                    <label 
+                    className="cursor-pointer transition-[100ms] border-2 border-black py-1 px-3 rounded-lg bg-gray-50" 
+                    htmlFor={size.size}>
+                      <input type="radio" name="size" id={size.size} className='mr-1'/>
+                      {size.size} 
+                    </label>
+                )
               })
             }
           </ButtonGroup>
           
           <h4>Quantity:</h4>
-          <div className='border-2 border-black w-fit'>
-            <button className='py-1 px-3' onClick={() => setQuantity(quantity-1)}>-</button>
-            <span className='py-1 px-3'>{quantity}</span>
-            <button className='py-1 px-3' onClick={() => setQuantity(quantity+1)}>+</button>
+          <div>
+            <div className='border-2 border-black w-fit rounded-lg'>
+              <button className='py-1 px-3' onClick={() => setQuantity(quantity-1)}>-</button>
+              <span className='py-1 px-3'>{quantity}</span>
+              <button className='py-1 px-3' onClick={() => setQuantity(quantity+1)}>+</button>
+            </div>
+            <p className='text-gray-600 '>{product.sizes.quantity} pieces left.</p>
           </div>
-          <p className='text-gray-600'>{product.quantity} pieces left.</p>
           <div className="buttons flex flex-col gap-2">
             <Button colorScheme='blue' className='w-full'>Buy Now</Button>
             <Button colorScheme='green' className='w-full'>Add to Cart</Button>
