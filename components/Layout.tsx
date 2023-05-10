@@ -51,9 +51,6 @@ export default function Layout({ children, ...props }: Props) {
 
       <div className="flex min-h-screen flex-col justify-between">
         <header className={`fixed w-screen transition-['500ms'] ${visible ? 'top-0  ' : 'top-[-100px]'}`}>
-          <div id="loading" className={`w-screen absolute transition-[300ms] text-white text-center bg-black ${loading ?'top-0' : 'top-[-100px]'}`}>
-            Loading
-          </div>
           <Announcement/>
           <Navbar/>
         </header>

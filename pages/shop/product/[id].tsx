@@ -6,6 +6,10 @@ interface Props {
   productDummy?:any
 }
 
+interface Params {
+  params?:any,
+}
+
 const page = () => {
 
   return (
@@ -15,7 +19,7 @@ const page = () => {
   )
 }
 
-export const getStaticProps = async ({params}) => {
+export const getStaticProps = async ( { params }:Params ) => {
 
   const res = await fetch(`https://dummyjson.com/products/${params.id}`)
 
