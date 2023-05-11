@@ -18,9 +18,8 @@ export default function ProductsPage({title,category="laptops",products,...props
 
   return (
     <>
-      <div className="w-full my-0">
-        <h1 className='font-extrabold text-center md:h-32 md:text-8xl my-10'>{title}</h1>
-        <div className="flex gap-3 flex-wrap w-[95%] mx-auto justify-evenly">
+        <h1 className='font-extrabold text-center md:h-32 md:text-8xl mt-4 mb-2 md:my-10'>{title}</h1>
+        <div className="flex flex-wrap w-[95%] mx-auto justify-start">
           {
             products
             .filter( (product:any) => product.category == category)
@@ -31,7 +30,6 @@ export default function ProductsPage({title,category="laptops",products,...props
             })
           }
         </div>
-      </div>
     </>
   )
 }

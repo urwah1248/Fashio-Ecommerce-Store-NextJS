@@ -21,7 +21,7 @@ type Props = {
 };
 
 export function TitleProvider({ children }: Props) {
-    const [title, setTitle] = useState<String>("Web Engineering Project");
+    const [title, setTitle] = useState<String>("Fashio.pk");
 
     const changeTitle = (newTitle:String) => {
         setTitle(newTitle);

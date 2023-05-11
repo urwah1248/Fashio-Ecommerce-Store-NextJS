@@ -49,7 +49,7 @@ export default function Layout({ children, ...props }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex min-h-screen flex-col justify-between">
+      <div className="flex min-h-screen flex-col justify-between bg-gray-100">
         <header className={`fixed w-screen transition-['500ms'] ${visible ? 'top-0  ' : 'top-[-100px]'}`}>
           <Announcement/>
           <Navbar/>

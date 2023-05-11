@@ -6,8 +6,6 @@ interface Props{
     product?:any,
 }
 
-
-
 const ProductPage = ({product,...props}:Props) => {
   const [quantity, setQuantity] = useState(1)
   return (
@@ -41,7 +39,7 @@ const ProductPage = ({product,...props}:Props) => {
 
           <ButtonGroup>
             {
-              product.sizes.map((size:any) => {
+              product.stock.map((size:any) => {
                 return (
                     <label 
                     className="cursor-pointer transition-[100ms] border-2 border-black py-1 px-3 rounded-lg bg-gray-50" 
@@ -61,7 +59,7 @@ const ProductPage = ({product,...props}:Props) => {
               <span className='py-1 px-3'>{quantity}</span>
               <button className='py-1 px-3' onClick={() => setQuantity(quantity+1)}>+</button>
             </div>
-            <p className='text-gray-600 '>{product.sizes.quantity} pieces left.</p>
+            <p className='text-gray-600 '>{product.stock[0].quantity} pieces left.</p>
           </div>
           <div className="buttons flex flex-col gap-2">
             <Button colorScheme='blue' className='w-full'>Buy Now</Button>

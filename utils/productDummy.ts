@@ -5,7 +5,7 @@ export const productDummy = {
     category: "rings",
     price: 349,
     rating: 4.4, // Optional
-    sizes: [
+    stock: [
         {
             size: 16,
             quantity: 2,
