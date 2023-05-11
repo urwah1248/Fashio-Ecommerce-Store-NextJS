@@ -7,7 +7,7 @@ interface Props{
 export default function Earrings({products}:Props) {
   
   return (
-    <ProductsPage title="Earrings" category="smartphones" products={products}></ProductsPage>
+    <ProductsPage title="Earrings" category="laptops" products={products}></ProductsPage>
   )
 }
 

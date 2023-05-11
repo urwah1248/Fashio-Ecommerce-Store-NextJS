@@ -20,7 +20,7 @@ export default function ProductsPage({title,category="laptops",products,...props
     <>
       <div className="w-full my-0">
         <h1 className='font-extrabold text-center md:h-32 md:text-8xl my-10'>{title}</h1>
-        <div className="flex gap-3 flex-wrap w-[95%] mx-auto justify-between">
+        <div className="flex gap-3 flex-wrap w-[95%] mx-auto justify-evenly">
           {
             products
             .filter( (product:any) => product.category == category)
