@@ -7,5 +7,5 @@ export default function handler(
   res: NextApiResponse
 ) {
     const {id} = req.query
-    res.status(200).json(jewelryData.filter(product => product.id.toString()==id))
+    res.status(200).json(jewelryData.find(product => product.id.toString()==id))
 }

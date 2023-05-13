@@ -20,8 +20,7 @@ const page = ({product}:Props) => {
 
 export const getStaticProps = async ( { params }:Params ) => {
 
-  const res = await fetch(`/api/products/${params.id}`)
-
+  const res = await fetch(`${process.env.URL}/api/products/${params.id}`)
   const product = await res.json()
 
   return {
