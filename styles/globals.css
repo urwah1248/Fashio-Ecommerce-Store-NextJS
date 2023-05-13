@@ -19,7 +19,7 @@
     @apply text-lg font-inter font-extrabold;
   }
   .page-header{
-    @apply font-extrabold text-center md:h-32 md:text-8xl mt-4 mb-2 md:my-10;
+    @apply font-extrabold text-center md:h-28 md:text-8xl mt-4 mb-2 md:my-10;
   }
 }
 

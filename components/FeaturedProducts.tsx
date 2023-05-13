@@ -6,9 +6,10 @@ import { Button, ButtonGroup } from '@chakra-ui/react'
 interface Props{
     products: Array<any>,
     title: String,
+    category: String,
 }
 
-const FeaturedProducts = ({products,title, ...props}:Props) => {
+const FeaturedProducts = ({products,title, category="", ...props}:Props) => {
   return (
     <div className='py-10 w-full flex flex-col items-center'>
         <h1 
@@ -18,7 +19,7 @@ const FeaturedProducts = ({products,title, ...props}:Props) => {
         <div className='scrollbar-hide overflow-x-scroll overflow-y-hidden w-full md:overflow-x-hidden md:flex flex-wrap md:gap-3 whitespace-nowrap justify-center'>
           <div className="py-24 pl-12 inline sm:hidden"></div>
           {products
-          .filter(product => product.category==title)
+          .filter(product =>category?product.category==category:true)
           .filter((product,index) => index<4)
           .map(product => {
               return (

@@ -26,8 +26,9 @@ export default function Home() {
   return (
     <div className='overflow-x-hidden'>
       <Featured />
-      <FeaturedProducts title="rings" products={products}/>
-      <FeaturedProducts title="earrings" products={products}/>
+      <FeaturedProducts title="rings" category="rings" products={products}/>
+      <FeaturedProducts title="earrings" category="earrings" products={products}/>
+      <FeaturedProducts title="More Jewelry" products={products}/>
     </div>
   )
 }
