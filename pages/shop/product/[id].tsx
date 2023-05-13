@@ -1,5 +1,4 @@
 import ProductPage from '@/components/ProductPage'
-import { productDummy } from '@/utils/productDummy'
 
 interface Props {
   product?:any,
@@ -21,14 +20,13 @@ const page = ({product}:Props) => {
 
 export const getStaticProps = async ( { params }:Params ) => {
 
-  const res = await fetch(`http://localhost:3004/products/${params.id}`)
+  const res = await fetch(`/api/products/${params.id}`)
 
   const product = await res.json()
 
   return {
     props:{
-      product,
-      productDummy
+      product
     }
   }
   

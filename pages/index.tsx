@@ -1,5 +1,5 @@
 import Featured from '../components/Featured'
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import { useTitle } from '@/context/titleContext';
 import FeaturedProducts from '@/components/FeaturedProducts';
 
@@ -7,13 +7,21 @@ interface Props{
   products: Array<any>
 }
 
-export default function Home({products}:Props) {
+export default function Home() {
+  
+  const [products, setProducts] = useState([])
 
   const {changeTitle} = useTitle();
 
   useEffect(() => {
     changeTitle(`Home | Fashio.pk`)
   },[])
+
+  useEffect(() => {
+    fetch(`/api/products`)
+    .then(res => res.json())
+    .then(data => setProducts(data))
+  }, [])
 
   return (
     <div className='overflow-x-hidden'>
@@ -22,24 +30,4 @@ export default function Home({products}:Props) {
       <FeaturedProducts title="earrings" products={products}/>
     </div>
   )
-}
-
-export const getStaticProps = async () => {
-
-  
-  
-  // const res = await fetch(`https://dummyjson.com/products`)
-  // const res2 = await res.json()
-  // const products = res2.products
-
-  //Local Json Server
-  const res = await fetch(`http://localhost:3004/products`)
-  const products = await res.json()
-
-  return {
-    props:{
-      products
-    }
-  }
-  
 }

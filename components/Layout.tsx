@@ -56,7 +56,7 @@ export default function Layout({ children, ...props }: Props) {
           <Navbar/>
         </header>
         <div className={`space-filler h-[81px] md:h-[85px] transition-['250ms'] ${visible ? 'top-0  ' : 'top-[-100px]'}`}></div>
-        <main className="m-auto mx-0 mt-0 px-0">
+        <main className="m-auto mx-0 mt-0 px-0 w-full">
           {children}
         </main>
         <Footer/>
