@@ -28,7 +28,7 @@ export default function Home() {
       <Featured />
       <FeaturedProducts title="rings" category="rings" products={products}/>
       <FeaturedProducts title="earrings" category="earrings" products={products}/>
-      <FeaturedProducts title="More Jewelry" products={products}/>
+      <FeaturedProducts title="More Jewelry" category="" products={products}/>
     </div>
   )
 }
