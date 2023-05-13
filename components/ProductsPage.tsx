@@ -16,7 +16,7 @@ export default function ProductsPage({title,category,...props}:Props) {
     },[])
 
     useEffect(() => {
-      fetch(`http://localhost:3000/api/products`)
+      fetch(`${process.env.URL}/api/products`)
       .then(res => res.json())
       .then(data => setProducts(data))
     }, [])

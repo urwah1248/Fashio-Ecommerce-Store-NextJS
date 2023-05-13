@@ -13,34 +13,34 @@ const page = ({product}:Props) => {
 
   return (
     <>
-    <h1>URWAH</h1>
+      <ProductPage product={product}/>
     </>
   )
 }
 
-// export const getStaticProps = async ( { params }:Params ) => {
+export const getStaticProps = async ( { params }:Params ) => {
 
-//   const res = await fetch(`${process.env.URL}/api/products/${params.id}`)
-//   const product = await res.json()
+  const res = await fetch(`${process.env.URL}/api/products/${params.id}`)
+  const product = await res.json()
 
-//   return {
-//     props:{
-//       product
-//     }
-//   }
+  return {
+    props:{
+      product
+    }
+  }
   
-// }
+}
 
-// export async function getStaticPaths() {
-//   return {
-//     paths: [
-//       { params: { id: '1' }},
-//       {
-//         params: { id: '2' },
-//       },
-//     ],
-//     fallback: "blocking"
-//   }
-// }
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { id: '1' }},
+      {
+        params: { id: '2' },
+      },
+    ],
+    fallback: "blocking"
+  }
+}
 
 export default page
