@@ -13,13 +13,12 @@ export default function ProductsPage({title,category="laptops",products,...props
 
     useEffect(() => {
       changeTitle(`${title} | Fashio.pk`);
-      console.log(products)
     },[])
 
   return (
-    <>
-        <h1 className='font-extrabold text-center md:h-32 md:text-8xl mt-4 mb-2 md:my-10'>{title}</h1>
-        <div className="flex flex-wrap w-[95%] mx-auto justify-start">
+    <div className='w-full'>
+        <h1 className='page-header'>{title}</h1>
+        <div className="flex flex-wrap w-[96%] mx-auto justify-center sm:justify-start gap-[2%]">
           {
             products
             .filter( (product:any) => product.category == category)
@@ -29,8 +28,9 @@ export default function ProductsPage({title,category="laptops",products,...props
               )
             })
           }
+          
         </div>
-    </>
+    </div>
   )
 }
 

@@ -3,6 +3,7 @@ import React, {ReactNode, useEffect, useState} from 'react';
 import Navbar from './Navbar'
 import Announcement from './Announcement'
 import { useTitle } from '@/context/titleContext';
+import Footer from './Footer';
 
 interface Props {
   children?: ReactNode,
@@ -58,9 +59,7 @@ export default function Layout({ children, ...props }: Props) {
         <main className="m-auto mx-0 mt-0 px-0">
           {children}
         </main>
-        <footer className="flex h-10 py-3 font-inter justify-center items-center shadow-inner">
-          <p className='m-0'>© Fashio.pk | 2023</p>
-        </footer>
+        <Footer/>
       </div>
     </>
   );

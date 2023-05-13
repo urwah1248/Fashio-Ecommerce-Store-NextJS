@@ -10,18 +10,18 @@ interface Params {
   params?:any,
 }
 
-const page = () => {
+const page = ({product}:Props) => {
 
   return (
     <>
-      <ProductPage product={productDummy}/>
+      <ProductPage product={product}/>
     </>
   )
 }
 
 export const getStaticProps = async ( { params }:Params ) => {
 
-  const res = await fetch(`https://dummyjson.com/products/${params.id}`)
+  const res = await fetch(`http://localhost:3004/products/${params.id}`)
 
   const product = await res.json()
 

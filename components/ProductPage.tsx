@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import ImageGallery from 'react-image-gallery'
 
@@ -8,6 +8,8 @@ interface Props{
 
 const ProductPage = ({product,...props}:Props) => {
   const [quantity, setQuantity] = useState(1)
+  const sizeRef = useRef(null)
+
   return (
     <div className='md:flex flex-row mt-10 mx-10'>
         
@@ -39,12 +41,13 @@ const ProductPage = ({product,...props}:Props) => {
 
           <ButtonGroup>
             {
-              product.stock.map((size:any) => {
+              product.stock.map((size:any, index:number) => {
                 return (
                     <label 
                     className="cursor-pointer transition-[100ms] border-2 border-black py-1 px-3 rounded-lg bg-gray-50" 
-                    htmlFor={size.size}>
-                      <input type="radio" name="size" id={size.size} className='mr-1'/>
+                    htmlFor={size.size}
+                    key={index}>
+                      <input type="radio" name="size" id={`size${index}`} className='mr-1' defaultChecked={index<1}/>
                       {size.size} 
                     </label>
                 )

@@ -4,10 +4,10 @@ interface Props{
   products: Array<any>
 }
 
-export default function Earrings({products}:Props) {
+export default function Bangles({products}:Props) {
   
   return (
-    <ProductsPage title="Earrings" category="earrings" products={products}></ProductsPage>
+    <ProductsPage title="Bangles" category="bangles" products={products}></ProductsPage>
   )
 }
 

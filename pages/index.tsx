@@ -18,17 +18,23 @@ export default function Home({products}:Props) {
   return (
     <div className='overflow-x-hidden'>
       <Featured />
-      <FeaturedProducts title="smartphones" products={products}/>
-      <FeaturedProducts title="laptops" products={products}/>
+      <FeaturedProducts title="rings" products={products}/>
+      <FeaturedProducts title="earrings" products={products}/>
     </div>
   )
 }
 
 export const getStaticProps = async () => {
 
-  const res = await fetch(`https://dummyjson.com/products`)
-  const res2 = await res.json()
-  const products = res2.products
+  
+  
+  // const res = await fetch(`https://dummyjson.com/products`)
+  // const res2 = await res.json()
+  // const products = res2.products
+
+  //Local Json Server
+  const res = await fetch(`http://localhost:3004/products`)
+  const products = await res.json()
 
   return {
     props:{
