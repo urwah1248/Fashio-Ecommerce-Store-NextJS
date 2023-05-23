@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import ImageGallery from 'react-image-gallery'
-import { useRouter } from 'next/router'
 import {useDispatch, useSelector } from 'react-redux'
 import { AddToCartAction } from '@/store/actions/ProductActions'
 import { useAppDispatch } from '@/store'
@@ -13,9 +12,6 @@ interface Props {
 const ProductPage = ({ product, ...props }: Props) => {
   const [quantity, setQuantity] = useState(1)
   const sizeRef = useRef(null)
-  // const router = useRouter();
-  // const data = router.query;
-  // console.log(data);
   
   const dispatch = useAppDispatch()
   const addToCart = () => {

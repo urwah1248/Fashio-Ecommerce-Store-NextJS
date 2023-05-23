@@ -19,7 +19,7 @@ const FeaturedProducts = ({products,title, category="", ...props}:Props) => {
         <div className='scrollbar-hide overflow-x-scroll overflow-y-hidden w-full md:overflow-x-hidden md:flex flex-wrap md:gap-3 whitespace-nowrap justify-center'>
           <div className="py-24 pl-12 inline sm:hidden"></div>
           {products
-          .filter(product =>category?product.category==category:true)
+          .filter(product =>category?product.category==category:(product.category!='rings'&&product.category!='earrings'))
           .filter((product,index) => index<4)
           .map(product => {
               return (

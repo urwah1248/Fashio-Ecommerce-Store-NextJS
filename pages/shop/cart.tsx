@@ -16,13 +16,14 @@ const Cart = () => {
       {
         cartItems && cartItems.map((item: any, index: number) => {
           return (
-            <Product key={index} product={item} index={index} cart={true} />
+            <Product key={index} product={item} cart={true} />
           )
         })
       }
       <Link href="./checkout">
         <Button bg="black" colorScheme='blackAlpha' className='mt-4' size="lg">
-          Checkout</Button>
+          Checkout
+        </Button>
       </Link>
     </div>
   )

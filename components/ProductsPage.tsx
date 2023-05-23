@@ -16,11 +16,10 @@ export default function ProductsPage({ title, category, ...props }: Props) {
   }, [])
 
   useEffect(() => {
-    // fetch(`${process.env.API_BASE_URL}/products/Rings`)
-    fetch(`http://localhost:5000/api/products/Rings`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`)
       .then(res => res.json())
       .then(data =>
-        setProducts(data.products))
+        setProducts(data))
   }, [])
 
   return (
@@ -28,11 +27,13 @@ export default function ProductsPage({ title, category, ...props }: Props) {
       <h1 className='page-header'>{title}</h1>
       <div className="flex flex-wrap w-[96%] mx-auto justify-center sm:justify-start gap-[2%]">
         {
-          products.map((item: any, index) => {
-              return (
-                <Product key={index} product={item} index={index}/>
-              )
-            })
+          products
+          .filter( (product:any) => product.category == category)
+          .map( (item:any) => {
+            return (
+              <Product key={item.id} product={item}/>
+            )
+          })
         }
 
       </div>
