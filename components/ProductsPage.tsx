@@ -2,24 +2,25 @@ import Product from '@/components/Product'
 import { useEffect, useState } from 'react';
 import { useTitle } from '@/context/titleContext';
 
-interface Props{
-    title?:String,
-    category?:String
+interface Props {
+  title?: String,
+  category?: String
 }
 
-export default function ProductsPage({title,category,...props}:Props) {
-    const {changeTitle} = useTitle();
-    const [products, setProducts] = useState([])
+export default function ProductsPage({ title, category, ...props }: Props) {
+  const { changeTitle } = useTitle();
+  const [products, setProducts] = useState([])
 
-    useEffect(() => {
-      changeTitle(`${title} | Fashio.pk`);
-    },[])
+  useEffect(() => {
+    changeTitle(`${title} | Fashio.pk`);
+  }, [])
 
-    useEffect(() => {
-      fetch(`/api/products`)
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`)
       .then(res => res.json())
-      .then(data => setProducts(data))
-    }, [])
+      .then(data =>
+        setProducts(data))
+  }, [])
 
   return (
     <div className='w-full'>

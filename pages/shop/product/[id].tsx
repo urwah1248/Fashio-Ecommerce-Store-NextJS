@@ -20,7 +20,7 @@ const page = ({product}:Props) => {
 
 export const getStaticProps = async ( { params }:Params ) => {
 
-  const res = await fetch(`${process.env.URL}/api/products/${params.id}`)
+  const res = await fetch(`${process.env.API_BASE_URL}/product/${params.id}`)
   const product = await res.json()
 
   return {
@@ -34,9 +34,9 @@ export const getStaticProps = async ( { params }:Params ) => {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { id: '1' }},
+      { params: { id: '6463b482a60a63e9f88e76fc' }},
       {
-        params: { id: '2' },
+        params: { id: '6464ef777d9a1d0957e46aca' },
       },
     ],
     fallback: "blocking"
