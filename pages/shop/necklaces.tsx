@@ -1,10 +1,6 @@
 import ProductsPage from '@/components/ProductsPage';
 
-interface Props{
-  products: Array<any>
-}
-
-export default function Necklaces({products}:Props) {
+export default function Necklaces() {
   
   return (
     <ProductsPage title="Necklaces" category="necklaces"></ProductsPage>

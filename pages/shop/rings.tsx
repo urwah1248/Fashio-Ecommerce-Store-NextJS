@@ -1,12 +1,8 @@
 import ProductsPage from '@/components/ProductsPage';
 
-interface Props{
-  products: Array<any>
-}
-
-export default function Rings({products}:Props) {
+export default function Rings() {
   
   return (
-    <ProductsPage title="Rings" category="rings"></ProductsPage>
+    <ProductsPage title="Rings" category="rings" ></ProductsPage>
   )
 }
