@@ -3,10 +3,6 @@ import {useEffect, useState} from 'react';
 import { useTitle } from '@/context/titleContext';
 import FeaturedProducts from '@/components/FeaturedProducts';
 
-interface Props{
-  products: Array<any>
-}
-
 export default function Home() {
   
   const [products, setProducts] = useState([])
@@ -24,11 +20,13 @@ export default function Home() {
   }, [])
 
   return (
-    <div className='overflow-x-hidden'>
-      <Featured />
-      <FeaturedProducts title="rings" category="rings" products={products}/>
-      <FeaturedProducts title="earrings" category="earrings" products={products}/>
-      <FeaturedProducts title="More Jewelry" category="" products={products}/>
-    </div>
+    <>
+      <div className='overflow-x-hidden'>
+        <Featured />
+        <FeaturedProducts title="rings" category="rings" products={products}/>
+        <FeaturedProducts title="earrings" category="earrings" products={products}/>
+        <FeaturedProducts title="More Jewelry" category="" products={products}/>
+      </div>
+    </>
   )
 }
