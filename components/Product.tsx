@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button, ButtonGroup } from '@chakra-ui/react'
 import Link from 'next/link'
 import Comma from '@/utils/Comma'
 
@@ -25,10 +24,6 @@ const Product = ({product, className, ...props}: Props) => {
         <p className='text-center font-inter text-gray-500 m-0'>Rs. {Comma(product.price)}</p>
         <p className='text-center font-inter text-gray-500 m-0'>Rating: {product.rating}</p>
         </Link>
-        {/* <div className='flex justify-around mt-2 font-inter'>
-          <Button colorScheme='blue' position="static" fontFamily="inherit">Buy Now</Button>
-          <Button colorScheme='green' position="static" fontFamily="inherit">Add to Cart</Button>
-        </div> */}
     </div>
   )
 }

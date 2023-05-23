@@ -38,17 +38,3 @@ export default function ProductsPage({title,category,...props}:Props) {
     </div>
   )
 }
-
-export const getStaticProps = async () => {
-
-  //Using temporary Next.js API
-  const res = await fetch(`http://localhost:3000/api/products`)
-  const products = await res.json()
-
-  return {
-    props:{
-      products
-    }
-  }
-  
-}
