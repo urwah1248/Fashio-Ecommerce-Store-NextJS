@@ -9,14 +9,39 @@ interface Props {
   product?: any,
 }
 
+
 const ProductPage = ({ product, ...props }: Props) => {
-  const [quantity, setQuantity] = useState(1)
+  const [size, setSize] = useState(`${product.stock[0].size}`);
+  const [quantity, setQuantity] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const sizeRef = useRef(null)
   
   const dispatch = useAppDispatch()
-  const addToCart = () => {
+  const addToCart = (product:any) => {
     dispatch(AddToCartAction(product))
   }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const item = {
+      id: product.id,
+      name: product.title,
+      size,
+      quantity,
+      image: product.images[0].thumbnail,
+      price: product.price*quantity
+    };
+
+    addToCart(item);
+
+    console.log(item);
+    
+
+    // Reset form fields
+    setSize(`${product.stock[0].size}`);
+    setQuantity(1);
+  };
   return (
     <div className='md:flex flex-row mt-10 mx-10'>
 
@@ -39,7 +64,8 @@ const ProductPage = ({ product, ...props }: Props) => {
         </div>
       </div>
 
-      <div className="md:w-2/5 right md:px-10 flex flex-col justify-evenly min-h-[550px] md:min-h-[450px]">
+      <form onSubmit={handleSubmit}
+      className="md:w-2/5 right md:px-10 flex flex-col justify-evenly min-h-[550px] md:min-h-[450px]">
         <h1 className='md:text-4xl lg:text-5xl text-center font-extrabold leading-0'>{product.title}</h1>
         <h4 className='font-normal'>{product.description}</h4>
         <h3 className='font-normal'>Rs. <span className="font-bold">{product.price}</span></h3>
@@ -54,7 +80,7 @@ const ProductPage = ({ product, ...props }: Props) => {
                   className="cursor-pointer transition-[100ms] border-2 border-black py-1 px-3 rounded-lg bg-gray-50"
                   htmlFor={size.size}
                   key={index}>
-                  <input type="radio" name="size" id={`size${index}`} className='mr-1' defaultChecked={index < 1} />
+                  <input type="radio" name="size" id={size.size} className='mr-1' value={size.size} defaultChecked={index < 1} onChange={(e) => {setSize(e.target.value); setQuantity(1);setActiveIndex(index)}}/>
                   {size.size}
                 </label>
               )
@@ -64,18 +90,20 @@ const ProductPage = ({ product, ...props }: Props) => {
 
         <h4>Quantity:</h4>
         <div>
-          <div className='border-2 border-black w-fit rounded-lg'>
-            <button className='py-1 px-3' onClick={() => setQuantity(quantity - 1)}>-</button>
+          <div className='border-2 border-black w-fit rounded-lg select-none'>
+            <div className='py-1 px-3 inline cursor-pointer'
+             onClick={() => quantity>1&&setQuantity(quantity - 1)}>-</div>
             <span className='py-1 px-3'>{quantity}</span>
-            <button className='py-1 px-3' onClick={() => setQuantity(quantity + 1)}>+</button>
+            <div className='py-1 px-3 inline cursor-pointer'
+             onClick={() => quantity<product.stock[activeIndex].quantity&&setQuantity(quantity + 1)}>+</div>
           </div>
-          <p className='text-gray-600 '>{product.stock[0].quantity} pieces left.</p>
+          <p className='text-gray-600 '>{product.stock[activeIndex].quantity} pieces left.</p>
         </div>
         <div className="buttons flex flex-col gap-2">
-          <Button colorScheme='blue' className='w-full'>Buy Now</Button>
-          <Button colorScheme='green' className='w-full' onClick={addToCart}>Add to Cart</Button>
+          {/* <Button colorScheme='blue' className='w-full'>Buy Now</Button> */}
+            <Button type='submit' colorScheme='green' className='w-full'>Add to Cart</Button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

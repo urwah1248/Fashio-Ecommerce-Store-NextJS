@@ -3,9 +3,13 @@ import {useEffect, useState} from 'react';
 import { useTitle } from '@/context/titleContext';
 import FeaturedProducts from '@/components/FeaturedProducts';
 
-export default function Home() {
+interface Props{
+  products: any
+}
+
+export default function Home({products,...props}:Props) {
   
-  const [products, setProducts] = useState([])
+  // const [products, setProducts] = useState([])
 
   const {changeTitle} = useTitle();
 
@@ -13,11 +17,11 @@ export default function Home() {
     changeTitle(`Home | Fashio.pk`)
   },[])
 
-  useEffect(() => {
-    fetch(`/api/products`)
-    .then(res => res.json())
-    .then(data => setProducts(data))
-  }, [])
+  // useEffect(() => {
+  //   fetch(`/api/products`)
+  //   .then(res => res.json())
+  //   .then(data => setProducts(data))
+  // }, [])
 
   return (
     <>
@@ -29,4 +33,17 @@ export default function Home() {
       </div>
     </>
   )
+}
+
+export const getStaticProps = async () => {
+
+  const res = await fetch(`${process.env.URL}/api/products`)
+  const products = await res.json()
+
+  return {
+    props:{
+      products
+    }
+  }
+  
 }
