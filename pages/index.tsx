@@ -14,7 +14,7 @@ export default function Home() {
   },[])
 
   useEffect(() => {
-    fetch(`$/api/products`)
+    fetch(`/api/products`)
     .then(res => res.json())
     .then(data => setProducts(data))
   }, [])
