@@ -21,19 +21,22 @@ const Cart = () => {
   }
 
   return (
-    <div className='w-full text-center'>
+    <div className='mx-2 text-center'>
       <h1 className='page-header'>Shopping Cart</h1>
-      <div className="cart-items scrollbar-hide overflow-x-scroll overflow-y-hidden w-full md:overflow-x-hidden md:flex flex-wrap whitespace-nowrap justify-center">
+      <div className="cart-items flex-col items-center scrollbar-hide overflow-x-scroll overflow-y-hidden w-full md:overflow-x-hidden md:flex flex-wrap whitespace-nowrap justify-center">
         {
-          cartItems?cartItems.map((item: any, index: number) => {
+          cartItems&&cartItems.map((item: any, index: number) => {
             return (
               <CartItem key={index} product={item} cart={true} />
             )
-          }):<h1>No items in Cart</h1>
+          })
+        }
+        {
+          cartItems.length<=0&&<h2>No Items in cart.</h2>
         }
       </div>
       <Link href="./checkout">
-        <Button bg="black" colorScheme='blackAlpha' className='mt-4' size="lg">
+        <Button bg="black" colorScheme='blackAlpha' className='mt-4 w-full md:w-[500px]' size="lg">
           Checkout
         </Button>
       </Link>

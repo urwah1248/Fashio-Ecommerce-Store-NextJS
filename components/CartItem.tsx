@@ -20,18 +20,17 @@ const CartItem = ({ product, className, cart, ...props }: Props) => {
     dispatch(RemoveFromCartAction(product))
   }
   return (
-    <div className='w-full md:w-[500px]'>
+    <div className='w-full md:w-[500px] text-start'>
         <Card
             direction={'row'}
             overflow='auto'
             variant='outline'
             rounded="none"
-            mx={5}
         >
             <Image
                 objectFit='cover'
-                maxW={{ base: '200px', sm: '200px' }}
-                maxH={120}
+                maxW={{ base: '110px', sm: '120' }}
+                maxH={{ base: '110px', sm: '120px' }}
                 src={product.image}
                 alt={product.name}
             />
@@ -41,14 +40,14 @@ const CartItem = ({ product, className, cart, ...props }: Props) => {
                 width="full"
                 overflow="hidden"
                 >
-                    <div className="flex w-full justify-between ">
-                        <h4>{product.quantity}x {product.name}</h4>
+                    <div className="flex w-full justify-between">
+                        <h4 className='w-[70%] overflow-clip text-base'>{product.quantity}x {product.name}</h4>
                         <Button
                         onClick={removeFromCart}
-                        px={-10} className='relative' colorScheme='red'>X</Button>
+                        px={-10} className='' colorScheme='red'>X</Button>
                     </div>
 
-                    <Text py='2' className='flex justify-between font-inter'>
+                    <Text className='flex justify-between font-inter'>
                         <p>Size: {product.size}</p>
                         <p>Rs.{product.price}</p>
                     </Text>

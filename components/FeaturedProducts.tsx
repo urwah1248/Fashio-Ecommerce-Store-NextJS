@@ -13,7 +13,7 @@ const FeaturedProducts = ({products,title, category="", ...props}:Props) => {
   return (
     <div className='py-10 w-full flex flex-col items-center'>
         <h1 
-        className='text-center md:text-7xl font-extrabold '>
+        className='page-header '>
           {title.charAt(0).toUpperCase() + title.slice(1)}
         </h1>
         <div className='scrollbar-hide overflow-x-scroll overflow-y-hidden w-full md:overflow-x-hidden md:flex flex-wrap md:gap-3 whitespace-nowrap justify-center'>

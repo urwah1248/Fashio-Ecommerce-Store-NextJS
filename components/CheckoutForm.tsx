@@ -35,7 +35,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
     // } catch (error) {
     //   console.error('Error submitting form:', error);
     // }
-    alert(formData);
+    alert(`${formData.name} 
+          ${formData.address}
+          ${formData.phoneNumber}
+          ${formData.paymentMethod}
+          ${formData.cartItems}`);
     
   };
 
