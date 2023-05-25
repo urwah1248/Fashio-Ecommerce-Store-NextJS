@@ -11,15 +11,6 @@ const Cart = () => {
     return state.AddToCartReducer;
   })  
 
-  const dummyProduct = {
-    id:1,
-    name: "Red Stone Ring",
-    image: '/ring.png',
-    price: 349,
-    quantity:1,
-    size:"16"
-  }
-
   return (
     <div className='mx-2 text-center'>
       <h1 className='page-header'>Shopping Cart</h1>

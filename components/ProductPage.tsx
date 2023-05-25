@@ -17,8 +17,8 @@ const ProductPage = ({ product, ...props }: Props) => {
   const sizeRef = useRef(null)
   
   const dispatch = useAppDispatch()
-  const addToCart = (product:any) => {
-    dispatch(AddToCartAction(product))
+  const addToCart = (item:any) => {
+    dispatch(AddToCartAction(item))
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

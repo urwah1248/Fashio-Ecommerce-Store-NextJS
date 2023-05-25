@@ -15,10 +15,11 @@ interface Props {
 const CartItem = ({ product, className, cart, ...props }: Props) => {
 
   const dispatch = useAppDispatch()
-  const removeFromCart = () => {
-    console.log("Removing");
-    dispatch(RemoveFromCartAction(product))
+  const removeFromCart = (item:any) => {
+    console.log("Removing", item.id);
+    dispatch(RemoveFromCartAction(item))
   }
+
   return (
     <div className='w-full md:w-[500px] text-start'>
         <Card
@@ -41,15 +42,15 @@ const CartItem = ({ product, className, cart, ...props }: Props) => {
                 overflow="hidden"
                 >
                     <div className="flex w-full justify-between">
-                        <h4 className='w-[70%] overflow-clip text-base'>{product.quantity}x {product.name}</h4>
+                        <h4 className='font-bold w-[70%] overflow-clip text-base'>{product.quantity}x {product.name}</h4>
                         <Button
-                        onClick={removeFromCart}
+                        onClick={()=> removeFromCart(product)}
                         px={-10} className='' colorScheme='red'>X</Button>
                     </div>
 
                     <Text className='flex justify-between font-inter'>
                         <p>Size: {product.size}</p>
-                        <p>Rs.{product.price}</p>
+                        <p className='mb-0'>Rs.{product.price}</p>
                     </Text>
                 
                 </CardBody>
