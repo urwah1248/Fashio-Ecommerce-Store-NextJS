@@ -14,6 +14,7 @@ interface CheckoutFormProps {
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
 
@@ -34,7 +35,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
     // } catch (error) {
     //   console.error('Error submitting form:', error);
     // }
-    console.log(formData);
+    alert(formData);
     
   };
 
@@ -71,9 +72,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
           City
         </label>
         <select
-          id="paymentMethod"
-          value={paymentMethod}
-          onChange={(e) => setPaymentMethod(e.target.value)}
+          id="city"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
           className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
           required
         >
