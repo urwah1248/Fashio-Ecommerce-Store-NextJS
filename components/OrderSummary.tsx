@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import CartItem from './CartItem';
+import { Divider } from '@chakra-ui/react'
 
 interface CartItem {
   id: number;
@@ -45,6 +46,17 @@ const OrderSummary: React.FC<CartProps> = ({ cartItems }) => {
   return (
     <div className="cart-items scrollbar-hide overflow-x-scroll overflow-y-hidden w-full md:overflow-x-hidden md:flex flex-wrap whitespace-nowrap justify-center">
         <div className="mx-10 md:w-full">
+          {cartItems.map(item => {
+            return (
+              <div className="flex justify-between items-center">
+                <p>{item.quantity}x {item.name}</p>
+                <p>Rs.{item.price}</p>
+              </div>
+            )
+          })}
+
+          <Divider colorScheme='red' my={3}/>
+
           <div className="flex justify-between items-center">
             <p>Subtotal</p>
             <p>Rs.{subTotalPrice()}</p>

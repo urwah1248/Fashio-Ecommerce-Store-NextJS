@@ -14,16 +14,16 @@ const Checkout = () => {
     <Head>
       <title>Checkout</title>
     </Head>
-    <main className="flex flex-col md:flex-row-reverse md:h-screen pb-10">
+    <main className="flex flex-col md:flex-row-reverse md:min-h-screen">
       <section id="product-summary"
       className='w-full md:w-5/12 bg-stone-100 pb-8'>
-        <h1 className='text-center py-2'>Order Summary</h1>
+        <h1 className='page-header md:text-5xl text-center py-2'>Order Summary</h1>
         <OrderSummary cartItems={cartItems}/>
       </section>
       
       <section id="checkout-form"
-      className='w-full md:w-7/12 md:border-r-2 md:border-stone-400'>
-        <h1 className='text-center py-2'>Checkout</h1>
+      className='w-full md:w-7/12 md:border-r-2 md:border-stone-400 pb-8'>
+        <h1 className='page-header md:text-5xl text-center py-2'>Checkout</h1>
         <CheckoutForm cartItems={cartItems}/>
         
       </section>

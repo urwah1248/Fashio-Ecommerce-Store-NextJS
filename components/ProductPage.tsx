@@ -35,9 +35,6 @@ const ProductPage = ({ product, ...props }: Props) => {
 
     addToCart(item);
 
-    console.log(item);
-    
-
     // Reset form fields
     setSize(`${product.stock[0].size}`);
     setQuantity(1);

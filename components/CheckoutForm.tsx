@@ -14,6 +14,7 @@ interface CheckoutFormProps {
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
+  const [zipcode, setZipcode] = useState('');
   const [city, setCity] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
@@ -26,6 +27,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
       address,
       phoneNumber,
       paymentMethod,
+      city,
+      zipcode,
       cartItems
     };
 
@@ -35,11 +38,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
     // } catch (error) {
     //   console.error('Error submitting form:', error);
     // }
-    alert(`${formData.name} 
-          ${formData.address}
-          ${formData.phoneNumber}
-          ${formData.paymentMethod}
-          ${formData.cartItems}`);
+    alert
+    (`${formData.name}
+    ${formData.address}
+    ${formData.phoneNumber}
+    ${formData.city}
+    ${formData.zipcode}
+    ${formData.paymentMethod}
+    ${formData.cartItems}`);
     
   };
 
@@ -71,23 +77,38 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
           required
         />
       </div>
-      <div className="mb-3">
-        <label htmlFor="paymentMethod" className="block mb-2 text-lg font-medium text-gray-700">
-          City
-        </label>
-        <select
-          id="city"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          required
-        >
-          <option value="">Select your City</option>
-          <option value="karachi">Karachi</option>
-          <option value="lahore">Lahore</option>
-          <option value="islamabad">Islamabad</option>
-        </select>
+      <div className="mb-3 flex justify-between">
+        <div className='w-6/12'>
+          <label htmlFor="paymentMethod" className="block mb-2 text-lg font-medium text-gray-700">
+            City
+          </label>
+          <select
+            id="city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            required
+          >
+            <option value="">Select your City</option>
+            <option value="karachi">Karachi</option>
+            <option value="lahore">Lahore</option>
+            <option value="islamabad">Islamabad</option>
+          </select>
+        </div>
+        <div className='w-2/5'>
+          <label htmlFor="paymentMethod" className="block mb-2 text-lg font-medium text-gray-700">
+            Zip Code
+          </label>
+          <input
+            id="zipcode"
+            type='text'
+            maxLength={5}
+            className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            required
+          />
+        </div>
       </div>
+        
       <div className="mb-3">
         <label htmlFor="phoneNumber" className="block mb-2 text-lg font-medium text-gray-700">
           Phone Number
