@@ -51,7 +51,7 @@ export default function Layout({ children, ...props }: Props) {
       </Head>
 
       <div className="flex min-h-screen flex-col justify-between bg-gray-100">
-        <header className={`fixed w-screen transition-['500ms'] ${visible ? 'top-0  ' : 'top-[-100px]'}`}>
+        <header className={`fixed w-screen z-10 transition-['500ms'] ${visible ? 'top-0  ' : 'top-[-100px]'}`}>
           <Announcement/>
           <Navbar/>
         </header>

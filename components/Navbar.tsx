@@ -42,7 +42,7 @@ const Navbar = () => {
             <Link
               href="/shop/cart"
               className={`${router.pathname === "/shop/cart" ? "pointer-events-none text-gray-300" : ""}`}
-            ><i className="bi bi-bag"></i></Link>
+            ><i className="bi bi-bag">{cartItems.length}</i></Link>
           </div>
           <CCollapse className="navbar-collapse" visible={visible}>
             <CNavbarNav className='flex w-full justify-evenly md:mx-[10%] font-bold'>

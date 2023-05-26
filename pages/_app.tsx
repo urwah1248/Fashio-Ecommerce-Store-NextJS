@@ -12,11 +12,15 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   if (router.pathname === '/shop/checkout') return (
-    <ChakraProvider>
-      <TitleProvider>
-        <Component {...pageProps} />
-      </TitleProvider>
-    </ChakraProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ChakraProvider>
+          <TitleProvider>
+            <Component {...pageProps} />
+          </TitleProvider>
+        </ChakraProvider>
+      </PersistGate>
+    </Provider>
   )
 
   return (
