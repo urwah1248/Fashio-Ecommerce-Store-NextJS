@@ -48,7 +48,7 @@ const CartItem = ({ product, className, cart, ...props }: Props) => {
                         px={-10} className='' colorScheme='red'>X</Button>
                     </div>
 
-                    <Text className='flex justify-between font-inter'>
+                    <Text className='flex justify-between font-inter mb-0'>
                         <p>Size: {product.size}</p>
                         <p className='mb-0'>Rs.{product.price}</p>
                     </Text>
