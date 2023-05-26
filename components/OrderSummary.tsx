@@ -46,9 +46,9 @@ const OrderSummary: React.FC<CartProps> = ({ cartItems }) => {
   return (
     <div className="cart-items scrollbar-hide overflow-x-scroll overflow-y-hidden w-full md:overflow-x-hidden md:flex flex-wrap whitespace-nowrap justify-center">
         <div className="mx-10 md:w-full">
-          {cartItems.map(item => {
+          {cartItems.map((item, index) => {
             return (
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center" key={index}>
                 <p>{item.quantity}x {item.name}</p>
                 <p>Rs.{item.price}</p>
               </div>

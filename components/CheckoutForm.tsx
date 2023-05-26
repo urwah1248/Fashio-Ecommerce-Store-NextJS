@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'
+import { useRouter } from 'next/router';
 
 interface CartItem {
   id: number;
   name: string;
   price: number;
   quantity: number;
+  image: string;
 }
 
 interface CheckoutFormProps {
@@ -12,6 +15,8 @@ interface CheckoutFormProps {
 }
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
+  const router = useRouter()
+
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [zipcode, setZipcode] = useState('');
@@ -32,21 +37,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
       cartItems
     };
 
-    // try {
-    //   const response = await axios.post('YOUR_API_ENDPOINT', formData);
-    //   console.log('Form submitted successfully:', response.data);
-    // } catch (error) {
-    //   console.error('Error submitting form:', error);
-    // }
-    alert
-    (`${formData.name}
-    ${formData.address}
-    ${formData.phoneNumber}
-    ${formData.city}
-    ${formData.zipcode}
-    ${formData.paymentMethod}
-    ${formData.cartItems}`);
-    
+    try {
+      console.log(formData)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/order`, formData);
+      alert('Your Order is Completed');
+      router.push('/')
+
+    } catch (error) {
+      alert('Your Order couldnt be completed');
+    }
   };
 
   return (
@@ -103,6 +102,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
             id="zipcode"
             type='text'
             maxLength={5}
+            onChange={e => setZipcode(e.target.value)}
             className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
             required
           />
