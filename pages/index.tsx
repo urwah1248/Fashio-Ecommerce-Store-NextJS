@@ -29,7 +29,7 @@ export default function Home({products,...props}:Props) {
 
 export const getStaticProps = async () => {
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`)
+  const res = await fetch(`${process.env.API_BASE_URL}/products`)
   const products = await res.json()
 
   return {

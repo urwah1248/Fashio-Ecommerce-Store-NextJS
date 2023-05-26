@@ -25,7 +25,7 @@ const ProductPage = ({ product, ...props }: Props) => {
     event.preventDefault();
 
     const item = {
-      id: product.id,
+      id: product._id,
       name: product.title,
       size,
       quantity,

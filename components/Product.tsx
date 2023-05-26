@@ -21,7 +21,7 @@ const Product = ({ product, className, cart, ...props }: Props) => {
   return (
     <div className={'bg-white product-card inline-block transition-[250ms] border-transparent hover:border-black border-2 sm:w-[49%] md:w-[32%] lg:w-[23%] w-4/5 mt-4 rounded-md justify-center overflow-x-hidden p-2' + ` ${className}`}>
       {/* <Link href={{pathname: `/shop/product/${index + 1}`, query: product}} className='text-black'> */}
-      <Link href={`/shop/product/${product.id}`} className='text-black'>
+      <Link href={`/shop/product/${product._id}`} className='text-black'>
         <div className="">
           <img
             src={product.images[0].thumbnail}
