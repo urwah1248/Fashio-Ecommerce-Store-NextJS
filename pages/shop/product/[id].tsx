@@ -33,12 +33,7 @@ export const getStaticProps = async ( { params }:Params ) => {
 
 export async function getStaticPaths() {
   return {
-    paths: [
-      { params: { id: '6463b482a60a63e9f88e76fc' }},
-      {
-        params: { id: '6464ef777d9a1d0957e46aca' },
-      },
-    ],
+    paths:[],
     fallback: "blocking"
   }
 }

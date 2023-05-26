@@ -8,20 +8,12 @@ interface Props{
 }
 
 export default function Home({products,...props}:Props) {
-  
-  // const [products, setProducts] = useState([])
 
   const {changeTitle} = useTitle();
 
   useEffect(() => {
     changeTitle(`Home | Fashio.pk`)
   },[])
-
-  // useEffect(() => {
-  //   fetch(`/api/products`)
-  //   .then(res => res.json())
-  //   .then(data => setProducts(data))
-  // }, [])
 
   return (
     <>
@@ -37,7 +29,7 @@ export default function Home({products,...props}:Props) {
 
 export const getStaticProps = async () => {
 
-  const res = await fetch(`${process.env.URL}/api/products`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`)
   const products = await res.json()
 
   return {
@@ -45,5 +37,4 @@ export const getStaticProps = async () => {
       products
     }
   }
-  
 }
