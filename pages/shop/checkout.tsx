@@ -6,7 +6,7 @@ import Head from 'next/head'
 const Checkout = () => {
 
   const { cartItems } = useSelector((state: any) => {
-    return state.AddToCartReducer;
+    return state.AddAndRemoveToCartReducer;
   })  
 
   return (

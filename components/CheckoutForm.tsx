@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useRouter } from 'next/router';
+import { useAppDispatch } from '@/store';
+import { CheckoutCartAction } from '@/store/actions/ProductActions';
 
 interface CartItem {
   id: number;
@@ -23,6 +25,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
   const [city, setCity] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
+  const dispatch = useAppDispatch()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -38,12 +41,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
     };
 
     try {
-      console.log(formData)
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/order`, formData);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/order`, formData);
       alert('Your Order is Completed');
+      dispatch(CheckoutCartAction())
       router.push('/')
 
     } catch (error) {
+      console.log(error);
+      
       alert('Your Order couldnt be completed');
     }
   };

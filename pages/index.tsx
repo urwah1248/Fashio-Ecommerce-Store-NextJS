@@ -11,7 +11,7 @@ export default function Home({products,...props}:Props) {
 
   const {changeTitle} = useTitle();
 
-  useEffect(() => {
+  useEffect(() => {    
     changeTitle(`Home | Fashio.pk`)
   },[])
 

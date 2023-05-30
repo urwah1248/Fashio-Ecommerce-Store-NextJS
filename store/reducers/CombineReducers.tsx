@@ -2,12 +2,10 @@
 
 import { combineReducers } from "redux";
 import {
-    AddToCartReducer,
-    RemoveFromCartReducer
+    AddAndRemoveToCartReducer ,
 } from './ProductReducer'
 
 const combineReducer = combineReducers({
-    AddToCartReducer,
-    RemoveFromCartReducer
+    AddAndRemoveToCartReducer 
 })
 export default combineReducer
