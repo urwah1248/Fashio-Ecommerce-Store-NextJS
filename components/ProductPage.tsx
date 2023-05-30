@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import ImageGallery from 'react-image-gallery'
 import {useDispatch, useSelector } from 'react-redux'
 import { AddToCartAction } from '@/store/actions/ProductActions'
 import { useAppDispatch } from '@/store'
+import { useTitle } from '@/context/titleContext';
 
 interface Props {
   product?: any,
@@ -15,6 +16,8 @@ const ProductPage = ({ product, ...props }: Props) => {
   const [quantity, setQuantity] = useState(1);
   const [activeIndex, setActiveIndex] = useState(0);
   const sizeRef = useRef(null)
+
+  const {changeTitle} = useTitle();
   
   const dispatch = useAppDispatch()
   const addToCart = (item:any) => {
@@ -39,6 +42,11 @@ const ProductPage = ({ product, ...props }: Props) => {
     setSize(`${product.stock[0].size}`);
     setQuantity(1);
   };
+
+  useEffect(() => {    
+    changeTitle(`${product.title} | Fashio.pk`)
+  },[])
+  
   return (
     <div className='md:flex flex-row mt-10 mx-10'>
 
