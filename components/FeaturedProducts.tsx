@@ -27,9 +27,12 @@ const FeaturedProducts = ({products,title, category="", ...props}:Props) => {
               )
           })}
         </div>
-        <Link href="/shop/rings">
+        {
+          category&&
+        <Link href={`/shop/${category}`}>
           <Button bg="black" colorScheme='blackAlpha' className='mt-4' size="lg">View More</Button>
         </Link>
+        }
     </div>
   )
 }

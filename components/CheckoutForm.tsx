@@ -24,7 +24,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
   const [zipcode, setZipcode] = useState('');
   const [city, setCity] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('cash');
   const dispatch = useAppDispatch()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -137,10 +137,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
           onChange={(e) => setPaymentMethod(e.target.value)}
           className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
           required
+          disabled
         >
-          <option value="">Select payment method</option>
-          <option value="cash">Cash on Delivery</option>
-          <option value="online">Online Payment</option>
+          <option selected value="cash">Cash on Delivery</option>
         </select>
       </div>
       <div className="text-center">
