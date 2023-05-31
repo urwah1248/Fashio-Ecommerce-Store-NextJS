@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Button } from '@chakra-ui/react'
+import { Button, useToast } from '@chakra-ui/react'
 import Comma from '@/utils/Comma'
 import { useAppDispatch } from '@/store'
 import { RemoveFromCartAction } from '@/store/actions/ProductActions'
@@ -43,9 +43,7 @@ const CartItem = ({ product, className, cart, ...props }: Props) => {
           >
             <div className="flex w-full justify-between">
               <h4 className='font-bold w-[70%] overflow-clip text-base'>{product.quantity}x {product.name}</h4>
-              <Button
-                onClick={() => removeFromCart(product)}
-                px={-10} className='' colorScheme='red'>X</Button>
+              <ToastButton product={product}/>
             </div>
 
             <Text className='flex justify-between font-inter mb-0'>
@@ -58,6 +56,35 @@ const CartItem = ({ product, className, cart, ...props }: Props) => {
       </Card>
 
     </div>
+  )
+}
+
+function ToastButton({ product, ...props }: Props) {
+  const toast = useToast()
+  const dispatch = useAppDispatch()
+  const removeFromCart = (item: any) => {
+    console.log("Removing", item.id);
+    dispatch(RemoveFromCartAction(item))
+  }
+  return (
+    <Button
+      type='submit' 
+      px={-10} className='' colorScheme='red'
+      onClick={() =>{
+        toast({
+          title: 'Removed from Cart',
+          position: "top-right",
+          description: `${product.quantity}x ${product.name} has been removed from your cart.`,
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+        removeFromCart(product);
+      }
+      }
+    >
+      X
+    </Button>
   )
 }
 
