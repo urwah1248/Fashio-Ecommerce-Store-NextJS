@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.1.4",
     "@chakra-ui/react": "^2.5.5",
     "@coreui/coreui": "^4.2.6",
     "@coreui/react": "^4.7.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@types/node": "18.15.11",
+    "antd": "^5.5.2",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.4",

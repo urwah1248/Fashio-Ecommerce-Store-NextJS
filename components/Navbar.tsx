@@ -7,6 +7,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
+import CartButton from './CartButton';
+
 
 const Navbar = () => {
 
@@ -42,7 +44,7 @@ const Navbar = () => {
             <Link
               href="/shop/cart"
               className={`${router.pathname === "/shop/cart" ? "pointer-events-none text-gray-300" : ""}`}
-            ><i className="bi bi-bag">{cartItems.length}</i></Link>
+            ><CartButton count={cartItems.length}/></Link>
           </div>
           <CCollapse className="navbar-collapse" visible={visible}>
             <CNavbarNav className='flex w-full justify-evenly md:mx-[10%] font-bold'>
@@ -70,7 +72,7 @@ const Navbar = () => {
           <div className='md:static p-2 m-2 md:m-0 hidden md:block text-gray-500 hover:text-black'>
             <Link href="/shop/cart"
               className={`${router.pathname === "/shop/cart" ? "pointer-events-none text-gray-300" : ""}`}
-            ><i className="bi bi-bag">{cartItems.length}</i></Link>
+            ><CartButton count={cartItems.length}/></Link>
           </div>
         </CContainer>
       </CNavbar>

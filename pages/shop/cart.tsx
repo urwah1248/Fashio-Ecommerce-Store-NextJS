@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
-import Product from '@/components/Product'
 import CartItem from '@/components/CartItem'
+import { useTitle } from '@/context/titleContext';
 
 const Cart = () => {
+
+  const {changeTitle} = useTitle();
+  useEffect(() => changeTitle("Shopping Cart | Fashio.pk"), [])
 
   const { cartItems } = useSelector((state: any) => {
     return state.AddAndRemoveToCartReducer;

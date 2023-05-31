@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button, ButtonGroup, useToast } from '@chakra-ui/react'
 import ImageGallery from 'react-image-gallery'
 import {useDispatch, useSelector } from 'react-redux'
 import { AddToCartAction } from '@/store/actions/ProductActions'
 import { useAppDispatch } from '@/store'
 import { useTitle } from '@/context/titleContext';
+
 
 interface Props {
   product?: any,
@@ -24,19 +25,19 @@ const ProductPage = ({ product, ...props }: Props) => {
     dispatch(AddToCartAction(item))
   }
 
+  const item = {
+    id: product._id,
+    name: product.title,
+    size,
+    quantity,
+    image: product.images[0].thumbnail,
+    price: product.price*quantity
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const item = {
-      id: product._id,
-      name: product.title,
-      size,
-      quantity,
-      image: product.images[0].thumbnail,
-      price: product.price*quantity
-    };
-
     addToCart(item);
+
 
     // Reset form fields
     setSize(`${product.stock[0].size}`);
@@ -106,13 +107,36 @@ const ProductPage = ({ product, ...props }: Props) => {
         </div>
         <div className="buttons flex flex-col gap-2">
           {/* <Button colorScheme='blue' className='w-full'>Buy Now</Button> */}
-            <Button type='submit' colorScheme='green' className='w-full'>Add to Cart</Button>
+            {/* <Button type='submit' colorScheme='green' className='w-full'>Add to Cart</Button> */}
+          <ToastExample product={item}/>
         </div>
       </form>
+
+      
     </div>
   )
 }
 
+function ToastExample({ product, ...props }: Props) {
+  const toast = useToast()
+  return (
+    <Button
+      type='submit' colorScheme='green' className='w-full'
+      onClick={() =>
+        toast({
+          title: 'Added to Cart.',
+          position: "top-right",
+          description: `${product.quantity}x ${product.name} has been added to your cart.`,
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Add to Cart
+    </Button>
+  )
+}
 
 
 export default ProductPage
