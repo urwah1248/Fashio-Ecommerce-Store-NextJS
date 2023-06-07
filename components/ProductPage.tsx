@@ -125,7 +125,7 @@ function ToastExample({ product, ...props }: Props) {
       onClick={() =>
         toast({
           title: 'Added to Cart.',
-          position: "top-right",
+          position: "top",
           description: `${product.quantity}x ${product.name} has been added to your cart.`,
           status: 'success',
           duration: 9000,

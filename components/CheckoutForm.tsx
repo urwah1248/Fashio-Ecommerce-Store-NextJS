@@ -21,6 +21,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
   const toast = useToast()
   const router = useRouter()
 
+  const phoneNumberRegex = /^(\+92|0)[0-9]{10}$/;
+  const zipcodeRegex = /^[0-9]{5}$/; // 5 digits only
+
+
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
@@ -32,6 +36,31 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!phoneNumberRegex.test(phoneNumber)) {
+      // Phone number validation failed
+      toast({
+        title: 'Please enter a valid phone number.',
+        position: "top",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      })
+      return;
+    }
+
+    if (!zipcodeRegex.test(zipcode)) {
+      // Zip code validation failed
+      toast({
+        title: 'Please enter a valid Pakistani zipcode.',
+        position: "top",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      })
+      return;
+    }
+  
 
     const formData = {
       name,
@@ -45,6 +74,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
     };
 
     try {
+      toast({
+        title: 'Order in Process',
+        position: "top",
+        status: "info",
+        duration: 5000,
+        isClosable: true,
+      })
       await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}order`, formData);
       toast({
         title: 'Your Order is Completed',
@@ -76,6 +112,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
         <input
           type="text"
           id="name"
+          maxLength={30}
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -90,6 +127,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
           type="text"
           id="address"
           value={address}
+          maxLength={50}
           onChange={(e) => setAddress(e.target.value)}
           className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
           required
@@ -166,7 +204,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
           required
           disabled
         >
-          <option selected value="cash">Cash on Delivery</option>
+          <option value="cash">Cash on Delivery</option>
         </select>
       </div>
       <div className="text-center">

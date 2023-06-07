@@ -1,13 +1,18 @@
 import CheckoutForm from '@/components/CheckoutForm'
 import { useSelector } from 'react-redux'
 import OrderSummary from '@/components/OrderSummary'
+import { useRouter } from 'next/router';
 import Head from 'next/head'
 
 const Checkout = () => {
-
+  const router = useRouter()
   const { cartItems } = useSelector((state: any) => {
     return state.AddAndRemoveToCartReducer;
-  })  
+  })
+
+  if(cartItems.length==0){
+    router.push('/')
+  }
 
   return (
     <>
