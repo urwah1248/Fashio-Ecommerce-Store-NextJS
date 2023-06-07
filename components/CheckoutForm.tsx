@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { useAppDispatch } from '@/store';
 import { CheckoutCartAction } from '@/store/actions/ProductActions';
 import { useToast } from '@chakra-ui/react';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 interface CartItem {
   id: number;
@@ -16,6 +18,8 @@ interface CartItem {
 interface CheckoutFormProps {
   cartItems: CartItem[];
 }
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />;
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
   const toast = useToast()
@@ -32,6 +36,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
   const [city, setCity] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('cash');
+  const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -60,7 +65,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
       })
       return;
     }
-  
+
 
     const formData = {
       name,
@@ -74,6 +79,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
     };
 
     try {
+      setLoading(true)
       toast({
         title: 'Order in Process',
         position: "top",
@@ -82,6 +88,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
         isClosable: true,
       })
       await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}order`, formData);
+      setLoading(false)
       toast({
         title: 'Your Order is Completed',
         position: "top",
@@ -89,10 +96,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
         duration: 9000,
         isClosable: true,
       })
-      dispatch(CheckoutCartAction()) 
+      dispatch(CheckoutCartAction())
       router.push('/')
 
     } catch (error) {
+      setLoading(false)
       toast({
         title: 'Your Order could not be completed.',
         position: "top",
@@ -212,7 +220,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
           type="submit"
           className="w-full px-4 py-2 text-lg font-medium text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
-          Submit
+          {!loading ? 'Submit': <Spin indicator={antIcon} />}
         </button>
       </div>
     </form>

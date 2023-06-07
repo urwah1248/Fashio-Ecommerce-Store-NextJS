@@ -15,7 +15,6 @@ const Product = ({ product, className, cart, ...props }: Props) => {
 
   const dispatch = useAppDispatch()
   const removeFromCart = () => {
-    console.log("Removing");
     dispatch(RemoveFromCartAction(product))
   }
   return (
