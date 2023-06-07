@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router';
 import { useAppDispatch } from '@/store';
 import { CheckoutCartAction } from '@/store/actions/ProductActions';
+import { useToast } from '@chakra-ui/react';
 
 interface CartItem {
   id: number;
@@ -17,6 +18,7 @@ interface CheckoutFormProps {
 }
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
+  const toast = useToast()
   const router = useRouter()
 
   const [name, setName] = useState('');
@@ -44,14 +46,24 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
 
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}order`, formData);
-      alert('Your Order is Completed');
+      toast({
+        title: 'Your Order is Completed',
+        position: "top",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
       dispatch(CheckoutCartAction()) 
       router.push('/')
 
     } catch (error) {
-      console.log(error);
-
-      alert('Your Order couldnt be completed');
+      toast({
+        title: 'Your Order could not be completed.',
+        position: "top",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      })
     }
   };
 
