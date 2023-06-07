@@ -16,7 +16,7 @@ export default function ProductsPage({ title, category, ...props }: Props) {
   }, [])
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}products`)
       .then(res => res.json())
       .then(data =>
         setProducts(data))

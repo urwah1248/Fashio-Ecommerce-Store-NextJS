@@ -26,7 +26,7 @@ const ProductPage = ({ product, ...props }: Props) => {
   }
 
   const item = {
-    id: product._id,
+    _id: product._id,
     name: product.title,
     size,
     quantity,

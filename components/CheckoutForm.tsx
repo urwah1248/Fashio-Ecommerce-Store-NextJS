@@ -21,6 +21,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
 
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
   const [zipcode, setZipcode] = useState('');
   const [city, setCity] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -29,10 +30,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+
     const formData = {
       name,
       address,
+      email,
       phoneNumber,
       paymentMethod,
       city,
@@ -41,14 +43,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
     };
 
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/order`, formData);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}order`, formData);
       alert('Your Order is Completed');
-      dispatch(CheckoutCartAction())
+      dispatch(CheckoutCartAction()) 
       router.push('/')
 
     } catch (error) {
       console.log(error);
-      
+
       alert('Your Order couldnt be completed');
     }
   };
@@ -77,6 +79,19 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
           id="address"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
+          className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          required
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="email" className="block mb-2 text-lg font-medium text-gray-700">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
           required
         />
@@ -113,7 +128,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
           />
         </div>
       </div>
-        
+
       <div className="mb-3">
         <label htmlFor="phoneNumber" className="block mb-2 text-lg font-medium text-gray-700">
           Phone Number
