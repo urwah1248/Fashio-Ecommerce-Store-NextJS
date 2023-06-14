@@ -1,29 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-  h1{
+@layer base {
+  h1 {
     @apply text-5xl font-inter font-extrabold tracking-tighter;
   }
-  h2{
+  h2 {
     @apply text-4xl font-inter font-extrabold;
   }
-  h3{
+  h3 {
     @apply text-2xl font-inter font-extrabold;
   }
-  h4{
+  h4 {
     @apply text-lg font-inter font-extrabold;
   }
-  .page-header{
-    @apply font-extrabold text-center text-5xl md:text-7xl mt-4 mb-2 md:my-4; 
+  .page-header {
+    @apply font-extrabold text-center text-5xl md:text-7xl mt-4 mb-2 md:my-4;
   }
 }
 
-p{
+p {
   margin: 0;
 }
 
@@ -34,11 +34,11 @@ p{
 
 /* For IE, Edge and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-@media(min-width: 800px){
+@media (min-width: 800px) {
   .nav-item {
     display: inline-block;
     position: relative;
@@ -46,7 +46,7 @@ p{
   }
 
   .nav-item::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     transform: scaleX(0);
@@ -62,4 +62,18 @@ p{
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
