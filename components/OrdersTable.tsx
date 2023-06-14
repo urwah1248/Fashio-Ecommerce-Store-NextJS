@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 
 const OrdersTable = () => {
-  const [ordersData, setOrdersData] = useState([]);
+  const [ordersData, setOrdersData] = useState([])
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}orders`)
       .then((res) => res.json())
       .then((data) => {
-        setOrdersData(data);
-      });
-  }, [ordersData]);
+        setOrdersData(data)
+      })
+  }, [])
 
   return (
     <div>
@@ -22,8 +22,8 @@ const OrdersTable = () => {
             <th>Email</th>
             <th>Address</th>
             <th>City</th>
-            <th>Order</th>
-            <th>Status</th>
+            {/* <th>Order</th> */}
+            {/* <th>Status</th> */}
           </tr>
         </thead>
         {ordersData.map((data: any, i) => {
@@ -37,15 +37,15 @@ const OrdersTable = () => {
                 <td> {data.email ? data.email : "abc@gmail.com"}</td>
                 <td> {data.address}</td>
                 <td> {data.city}</td>
-                <td> All order data </td>
-                <td> Pending </td>
+                {/* <td> All order data </td> */}
+                {/* <td> Pending </td> */}
               </tr>
             </tbody>
-          );
+          )
         })}
       </table>
     </div>
-  );
-};
+  )
+}
 
-export default OrdersTable;
+export default OrdersTable

@@ -32,8 +32,8 @@ const ProductsTable = () => {
             <th>Description</th>
             <th>Category</th>
             <th>Price</th>
-            <th>Images</th>
-            <th>Stock</th>
+            {/* <th>Images</th>
+            <th>Stock</th> */}
           </tr>
         </thead>
         {productsData.map((data: any, i: any) => {
@@ -46,8 +46,8 @@ const ProductsTable = () => {
                 <td> {data.description}</td>
                 <td> {data.category}</td>
                 <td> {data.price}</td>
-                <td> Urls </td>
-                <td> Stock </td>
+                {/* <td> Urls </td>
+                <td> Stock </td> */}
                 <td>
                   <AppModal
                     text={<DeleteIcon />}
