@@ -49,7 +49,7 @@ const ProductPage = ({ product, ...props }: Props) => {
   },[])
   
   return (
-    <div className='md:flex flex-row mt-10 mx-10'>
+    <div className='md:flex flex-row my-10 mx-10'>
 
       <div className="left md:w-3/5">
         <div className="hidden md:block">
