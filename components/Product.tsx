@@ -22,7 +22,7 @@ const Product = ({ product, className, cart, ...props }: Props) => {
         </div>
 
         <p className='text-center font-inter text-gray-500 m-0'>Rs. {Comma(product.price)}</p>
-        <p className='text-center font-inter text-gray-500 m-0'>Rating: {product.rating}</p>
+        {/* <p className='text-center font-inter text-gray-500 m-0'>Rating: {product.rating}</p> */}
       </Link>
     </div>
   )
