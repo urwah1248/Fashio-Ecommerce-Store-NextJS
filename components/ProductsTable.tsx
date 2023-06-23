@@ -1,4 +1,16 @@
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons"
+import { DeleteIcon, EditIcon, ViewIcon } from "@chakra-ui/icons"
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  Button,
+} from '@chakra-ui/react'
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { AppModal } from "./AppModal"
@@ -23,43 +35,55 @@ const ProductsTable = () => {
 
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>S.No</th>
-            <th>Product ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Price</th>
-            {/* <th>Images</th>
-            <th>Stock</th> */}
-          </tr>
-        </thead>
+      <Table size='lg' variant='simple' className="bg-white font-inter">
+        <TableCaption>All Products</TableCaption>
+        <Thead>
+          <Tr>
+            <Th>S.No</Th>
+            {/* <Th>Product ID</Th> */}
+            <Th>Title</Th>
+            <Th>Description</Th>
+            <Th>Category</Th>
+            <Th>Price</Th>
+            <Th w="max">Images</Th>
+            <Th w={150}>Stock</Th>
+            <Th p={2}></Th>
+          </Tr>
+        </Thead>
+        
+        <Tbody>
         {productsData.map((data: any, i: any) => {
           return (
-            <tbody key={i}>
-              <tr>
-                <td> {i + 1}</td>
-                <td> {data._id}</td>
-                <td>{data.title}</td>
-                <td> {data.description}</td>
-                <td> {data.category}</td>
-                <td> {data.price}</td>
-                {/* <td> Urls </td>
-                <td> Stock </td> */}
-                <td>
+              <Tr key={i}>
+                <Td textAlign='center'> {i + 1}</Td>
+                {/* <Td> {data._id}</Td> */}
+                <Td>{data.title}</Td>
+                <Td> {data.description}</Td>
+                <Td> {data.category.charAt(0).toUpperCase() + data.category.slice(1)}</Td>
+                <Td> {data.price}</Td>  
+                <Td p={0}> <img width={250} src={data.images[0].thumbnail} alt="asd" /></Td>
+                <Td>
+                  {data.stock.map((size:any) => {
+                    return <p>{size.size} : {size.quantity}</p>
+                  })}
+                </Td>
+                <Td className="p-1">
                   <AppModal
                     text={<DeleteIcon />}
                     onDeleteProduct={() => deleteProduct(data._id)}
                   />
-                  <InputModal text={<EditIcon />} id={data._id} />
-                </td>
-              </tr>
-            </tbody>
+                  <div className="h-4"></div>
+                  <InputModal text={<EditIcon />} id={data._id}/>
+                  <div className="h-4"></div>
+                  <a href={`${process.env.NEXT_PUBLIC_URL}/shop/product/${data._id}`} target="blank">
+                    <Button className="w-full"><ViewIcon/></Button>
+                  </a>
+                </Td>
+              </Tr>
           )
         })}
-      </table>
+        </Tbody>
+      </Table>
     </div>
   )
 }
