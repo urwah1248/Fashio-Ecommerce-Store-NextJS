@@ -75,7 +75,7 @@ const ProductsTable = () => {
                   <div className="h-4"></div>
                   <InputModal text={<EditIcon />} id={data._id}/>
                   <div className="h-4"></div>
-                  <a href={`${process.env.NEXT_PUBLIC_URL}/shop/product/${data._id}`} target="blank">
+                  <a href={`/shop/product/${data._id}`} target="blank">
                     <Button className="w-full"><ViewIcon/></Button>
                   </a>
                 </Td>
