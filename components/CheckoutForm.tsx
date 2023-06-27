@@ -218,7 +218,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems }) => {
       <div className="text-center">
         <button
           type="submit"
-          className="w-full px-4 py-2 text-lg font-medium text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full px-4 py-2 text-lg font-medium text-white bg-gray-700 rounded hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-1000"
         >
           {!loading ? 'Submit': <Spin indicator={antIcon} />}
         </button>

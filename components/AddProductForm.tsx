@@ -80,13 +80,6 @@ const AddProductForm = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
-    // setStock([
-    //   {
-    //     size,
-    //     quantity,
-    //   },
-    // ])
     try {
       setLoading(true)
       await uploadImageToFirebase(images)
@@ -114,6 +107,17 @@ const AddProductForm = () => {
         duration: 9000,
         isClosable: true,
       })
+
+      setTitle("");
+      setDescription("");
+      setCategory("");
+      setPrice(0);
+      setRating("");
+      setImages([]);
+      setImageUrls([]);
+      setLoading(false);
+      setstock([{ size: "", quantity: 0 }]);
+
     } catch (error) {
       setLoading(false)
       setImages([])
@@ -155,7 +159,7 @@ const AddProductForm = () => {
         <input
           type="text"
           id="title"
-          maxLength={20}
+          maxLength={30}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -214,7 +218,7 @@ const AddProductForm = () => {
         <input
           type="number"
           id="price"
-          value={price}
+          value={price>0?price:''}
           onChange={(e) => setPrice(parseInt(e.target.value))}
           className="w-full px-4 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
           required
@@ -246,7 +250,7 @@ const AddProductForm = () => {
             Quantity:
             <input
               type="number"
-              value={size.quantity}
+              value={size.quantity>0?size.quantity:''}
               onChange={(event) =>
                 handleInputChange(sizeIndex, 'quantity', event)
               }
@@ -254,9 +258,12 @@ const AddProductForm = () => {
               />
           </label>
           
-          <button type="button" className="mt-3 h-10 w-10 text-center flex justify-center items-center bg-red-600 rounded-md text-gray-200 hover:bg-red-500 focus:ring-red-600 disabled:bg-red-300" disabled={stock.length<2} onClick={() => removeSize(sizeIndex)}>
-            <AiFillDelete/>
-          </button>
+          <label className="">
+            <span className="text-transparent">Del</span>
+            <button type="button" className="border-2 mb-2 p-2 w-10 text-center flex justify-center items-center bg-red-600 rounded-md text-gray-200 hover:bg-red-500 focus:ring-red-600 disabled:bg-red-300" disabled={stock.length<2} onClick={() => removeSize(sizeIndex)}>
+              <AiFillDelete className="text-xl"/>
+            </button>
+          </label>
         </div>
       ))}
       <button type="button" className="w-full px-4 py-2 text-lg font-medium text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:bg-indigo-200"

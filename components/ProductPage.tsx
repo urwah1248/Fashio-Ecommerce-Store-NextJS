@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Button, ButtonGroup, useToast } from '@chakra-ui/react'
+import { Button, useToast } from '@chakra-ui/react'
 import ImageGallery from 'react-image-gallery'
-import {useDispatch, useSelector } from 'react-redux'
 import { AddToCartAction } from '@/store/actions/ProductActions'
 import { useAppDispatch } from '@/store'
 import { useTitle } from '@/context/titleContext';
+import { Radio } from 'antd';
 
 
 interface Props {
@@ -49,23 +49,25 @@ const ProductPage = ({ product, ...props }: Props) => {
   },[])
   
   return (
-    <div className='md:flex flex-row my-10 mx-10'>
+    <div className='md:flex flex-row my-10 w-11/12 md:max-w-6xl mx-auto'>
 
       <div className="left md:w-3/5">
-        <div className="hidden md:block">
+        {/* <div className="hidden md:block">
           <ImageGallery
             items={product.images}
             thumbnailPosition='left'
             showNav={false}
             showPlayButton={false}
           />
-        </div>
-        <div className="md:hidden">
+        </div> */}
+        <div className={``}>
           <ImageGallery
             items={product.images}
+            showThumbnails={product.images.length>1}
             thumbnailPosition='bottom'
             showNav={false}
             showPlayButton={false}
+            
           />
         </div>
       </div>
@@ -78,21 +80,15 @@ const ProductPage = ({ product, ...props }: Props) => {
 
         <h4>Size:</h4>
 
-        <ButtonGroup>
+        <Radio.Group defaultValue={product.stock[0].size} buttonStyle="solid">
           {
             product.stock.map((size: any, index: number) => {
               return (
-                <label
-                  className="cursor-pointer transition-[100ms] border-2 border-black py-1 px-3 rounded-lg bg-gray-50"
-                  htmlFor={size.size}
-                  key={index}>
-                  <input type="radio" name="size" id={size.size} className='mr-1' value={size.size} defaultChecked={index < 1} onChange={(e) => {setSize(e.target.value); setQuantity(1);setActiveIndex(index)}}/>
-                  {size.size}
-                </label>
+                <Radio.Button onChange={(e:any) => {setSize(e.target.value); setQuantity(1);setActiveIndex(index)}} value={size.size}>{size.size}</Radio.Button>
               )
             })
           }
-        </ButtonGroup>
+        </Radio.Group>
 
         <h4>Quantity:</h4>
         <div>

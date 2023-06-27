@@ -55,7 +55,6 @@ const LinkItems: Array<LinkItemProps> = [
     route: "/admin/products",
   },
   { name: "Add Product", icon: FiCompass, route: "/admin/product/add" },
-  { name: "Settings", icon: FiSettings, route: "/" },
 ];
 
 export default function SidebarWithHeader({
@@ -216,12 +215,6 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       </Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
-        <IconButton
-          size="lg"
-          variant="ghost"
-          aria-label="open menu"
-          icon={<FiBell />}
-        />
         <Flex alignItems={"center"}>
           <Menu>
             <MenuButton
@@ -233,7 +226,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 <Avatar
                   size={"sm"}
                   src={
-                    "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                    "https://www.lansweeper.com/wp-content/uploads/2018/05/ASSET-USER-ADMIN.png"
                   }
                 />
                 <VStack
@@ -256,9 +249,6 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuDivider />
               <MenuItem onClick={() => router.push("/admin/login")}>
                 Sign out
               </MenuItem>

@@ -35,18 +35,18 @@ const ProductsTable = () => {
 
   return (
     <div>
-      <Table size='lg' variant='simple' className="bg-white font-inter">
+      <Table size='lg' variant='unstyled' className="bg-white font-inter">
         <TableCaption>All Products</TableCaption>
         <Thead>
           <Tr>
-            <Th>S.No</Th>
+            <Th p={1} textAlign='center'>S.No</Th>
             {/* <Th>Product ID</Th> */}
-            <Th>Title</Th>
-            <Th>Description</Th>
-            <Th>Category</Th>
-            <Th>Price</Th>
+            <Th p={1} textAlign='center'>Title</Th>
+            <Th p={1} textAlign='center'>Description</Th>
+            <Th p={1} textAlign='center'>Category</Th>
+            <Th p={1} textAlign='center'>Price</Th>
             <Th w="max">Images</Th>
-            <Th w={150}>Stock</Th>
+            <Th>Stock</Th>
             <Th p={2}></Th>
           </Tr>
         </Thead>
@@ -54,17 +54,24 @@ const ProductsTable = () => {
         <Tbody>
         {productsData.map((data: any, i: any) => {
           return (
-              <Tr key={i}>
-                <Td textAlign='center'> {i + 1}</Td>
+              <Tr key={data._id}>
+                <Td textAlign='center' p={1}> {i + 1}</Td>
                 {/* <Td> {data._id}</Td> */}
-                <Td>{data.title}</Td>
-                <Td> {data.description}</Td>
-                <Td> {data.category.charAt(0).toUpperCase() + data.category.slice(1)}</Td>
-                <Td> {data.price}</Td>  
-                <Td p={0}> <img width={250} src={data.images[0].thumbnail} alt="asd" /></Td>
-                <Td>
+                <Td p={2}>{data.title}</Td> 
+                <Td p={2}> {data.description}</Td>
+                <Td p={1}> {data.category.charAt(0).toUpperCase() + data.category.slice(1)}</Td>
+                <Td p={1}> {data.price}</Td>  
+                <Td p={0}>
+                  <img width={250} className="object-cover h-44" src={data.images[0]&&data.images[0].thumbnail} alt="asd" />
+                </Td>
+                <Td p={1}>
                   {data.stock.map((size:any) => {
-                    return <p>{size.size} : {size.quantity}</p>
+                    return (
+                      <div className=" my-2 border-2 border-black rounded-md flex">
+                        <span className="mr-2 font-semibold bg-black text-white p-1 text-center rounded-sm">{size.size}</span>
+                        <span className="text-center p-1">{size.quantity}</span>
+                      </div>
+                    )
                   })}
                 </Td>
                 <Td className="p-1">
@@ -75,7 +82,7 @@ const ProductsTable = () => {
                   <div className="h-4"></div>
                   <InputModal text={<EditIcon />} id={data._id}/>
                   <div className="h-4"></div>
-                  <a href={`/shop/product/${data._id}`} target="blank">
+                    <a href={`/shop/product/${data._id}`} target="blank">
                     <Button className="w-full"><ViewIcon/></Button>
                   </a>
                 </Td>

@@ -21,7 +21,7 @@ const Navbar = () => {
   })
   return (
     <>
-      <CNavbar expand="md" colorScheme="light" className="bg-gray-100 border-b-2 border-gray-300 font-inter py-0">
+      <CNavbar expand="md" colorScheme="light" className=" border-gray-300 font-inter py-0 bg-slate-50">
         <CContainer fluid>
           <CNavbarToggler
             aria-label="Toggle navigation"
