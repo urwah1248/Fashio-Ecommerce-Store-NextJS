@@ -14,6 +14,12 @@ import {
 } from '@chakra-ui/react'
 
 const OrdersTable = () => {
+  
+  const getDate = (mongoDate:any) => {
+    const date = new Date(mongoDate)
+    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+  }
+
   const [ordersData, setOrdersData] = useState([])
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}orders`)
@@ -35,15 +41,16 @@ const OrdersTable = () => {
 
   return (
     <div>
-      <Table size='lg' variant='simple' maxWidth="full" className="bg-white font-inter">
+      <Table size='lg' variant='unstyled' maxWidth="full" className="bg-white font-inter">
         <Thead>
           <Tr>
             <Th p={2} textAlign="center">S.NO</Th>
             <Th p={2} className="">Order Details</Th>
+            <Th p={2} className="">Order Items</Th>
             <Th>Customer Details</Th>
             <Th>Address</Th>
             {/* <Th>Order</Th> */}
-            <Th>Status</Th>
+            {/* <Th>Status</Th> */}
           </Tr>
         </Thead>
         {ordersData.map((data: any, i) => {
@@ -52,23 +59,26 @@ const OrdersTable = () => {
               <Tr>
                 <Td p={2} textAlign="center"> {i + 1}</Td>
                 <Td p={2}>
-                  <p>ID: {data._id}</p>
-                  {data.cartItems.map((item:any) => {
-                    return <p>{item.quantity}x {item.name}</p>
-                  })}
-                  <p>Bill: Rs. {subTotalPrice(data.cartItems)}</p>
+                  <p><span className="font-semibold">ID:</span> {data._id}</p>
+                  <p><span className="font-semibold">Bill:</span> Rs. {subTotalPrice(data.cartItems)+200}</p>
+                  <p><span className="font-semibold">Order Date:</span> {getDate(data.order_date)}</p>
                 </Td>
-                <Td>
+                <Td p={2}>
+                  {data.cartItems.map((item:any) => {
+                    return <p>{item.quantity}x {item.name} ({item.size})</p>
+                  })}
+                </Td>
+                <Td p={2}>
                   <p>{data.name}</p>
                   <p>{data.email ? data.email : ""}</p>
                   <p>{data.phoneNumber}</p>
                 </Td>
-                <Td>
+                <Td p={2}>
                   <p>{data.address}</p>
                   <p>{data.city}</p>
                 </Td>
                 {/* <Td> All order data </Td> */}
-                <Td>
+                {/* <Td>
                   <Select name="status" id="status" value={"pending"}>
                     <option value="pending">Pending</option>
                     <option value="confirmed">Confirmed</option>
@@ -77,7 +87,7 @@ const OrdersTable = () => {
                   </Select>
                   <br />
                   <Button width="full" disabled={data.status}>Change</Button>
-                </Td>
+                </Td> */}
               </Tr>
             </Tbody>
           )

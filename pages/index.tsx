@@ -16,7 +16,7 @@ export default function Home({ products, ...props }: Props) {
 
   return (
     <>
-      <div className="overflow-x-hidden">
+      <div className="overflow-x-hidden pt-0">
         <Featured />
         <FeaturedProducts title="rings" category="rings" products={products} />
         <FeaturedProducts
