@@ -24,7 +24,7 @@
 }
 
 p {
-  margin: 0;
+  margin: 0 !important;
 }
 
 /* For Webkit-based browsers (Chrome, Safari and Opera) */
@@ -73,7 +73,7 @@ table {
 
 td,
 th {
-  border: 1px solid #dddddd;
+  border: 1px solid #dddddd !important;
   text-align: left;
   padding: 8px;
 }

@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image';
 import Link from "next/link"
-import { CNavbar, CContainer, CNavbarBrand, CNavbarToggler, CCollapse, CNavbarNav, CNavItem, CNavLink, CDropdown, CDropdownToggle, CDropdownMenu, CDropdownItem, CDropdownDivider } from '@coreui/react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap-icons/font/bootstrap-icons.css'
-import '@coreui/coreui/dist/css/coreui.min.css'
+// import 'bootstrap-icons/font/bootstrap-icons.css'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import CartButton from './CartButton';
 
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Navbar from 'react-bootstrap/Navbar';
 
-const Navbar = () => {
+const NavbarComponent = () => {
 
   const router = useRouter()
   const [visible, setVisible] = useState(false)
@@ -21,15 +23,16 @@ const Navbar = () => {
   })
   return (
     <>
-      <CNavbar expand="md" colorScheme="light" className=" border-gray-300 font-inter py-0 bg-slate-50">
-        <CContainer fluid>
-          <CNavbarToggler
+      <Navbar expand="md" className=" border-gray-300 font-inter py-0 bg-slate-50">
+        <Container fluid>
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
             aria-label="Toggle navigation"
             aria-expanded={!visible}
             onClick={() => setVisible(!visible)}
             className='border-none'
           />
-          <CNavbarBrand className='mx-auto font-extrabold md:indent-0 md:w-fit md:static top-0'>
+          <Navbar.Brand className='mx-auto font-extrabold md:indent-0 md:w-fit md:static top-0'>
             <Link href='/'>
               <Image
                 src="/logo.png"
@@ -39,45 +42,49 @@ const Navbar = () => {
                 className='object-cover h-12 opacity-70 hover:opacity-100 transition-[500ms]'
               />
             </Link>
-          </CNavbarBrand>
+          </Navbar.Brand>
           <div className='md:static p-2 m-2 md:hidden text-gray-500'>
             <Link
               href="/shop/cart"
               className={`${router.pathname === "/shop/cart" ? "pointer-events-none text-gray-300" : ""}`}
             ><CartButton count={cartItems.length}/></Link>
           </div>
-          <CCollapse className="navbar-collapse" visible={visible}>
-            <CNavbarNav className='flex w-full justify-evenly md:mx-[10%] font-bold'>
-              <CNavItem>
+          <Navbar.Collapse id="basic-navbar-nav" className="navbar-collapse">
+            <Nav className='flex w-full justify-evenly md:mx-[10%] font-bold'>
+              {/* <CNavItem>
                 <Link className='nav-link' onClick={() => setVisible(false)} href="/">
                   Home</Link>
-              </CNavItem>
-              <CNavItem>
+              </CNavItem> */}
+              <li className="nav-item">
+                <Link className='nav-link' onClick={() => setVisible(false)} href="/">
+                  Home</Link>
+              </li>
+              <li className="nav-item">
                 <Link onClick={() => setVisible(false)} className='nav-link' href="/shop/rings">Rings</Link>
-              </CNavItem>
-              <CNavItem>
+              </li>
+              <li className="nav-item">
                 <Link onClick={() => setVisible(false)} className='nav-link' href="/shop/earrings">Earrings</Link>
-              </CNavItem>
-              <CNavItem>
+              </li>
+              <li className="nav-item">
                 <Link onClick={() => setVisible(false)} className='nav-link' href="/shop/bracelets">Bracelets</Link>
-              </CNavItem>
-              <CNavItem>
+              </li>
+              <li className="nav-item">
                 <Link onClick={() => setVisible(false)} className='nav-link' href="/shop/bangles">Bangles</Link>
-              </CNavItem>
-              <CNavItem>
+              </li>
+              <li className="nav-item">
                 <Link onClick={() => setVisible(false)} className='nav-link' href="/shop/necklaces">Necklaces</Link>
-              </CNavItem>
-            </CNavbarNav>
-          </CCollapse>
+              </li>
+            </Nav>
+          </Navbar.Collapse>
           <div className='md:static p-2 m-2 md:m-0 hidden md:block text-gray-500 hover:text-black'>
             <Link href="/shop/cart"
               className={`${router.pathname === "/shop/cart" ? "pointer-events-none text-gray-300" : ""}`}
             ><CartButton count={cartItems.length}/></Link>
           </div>
-        </CContainer>
-      </CNavbar>
+        </Container>
+      </Navbar>
     </>
   )
 }
 
-export default Navbar
+export default NavbarComponent
