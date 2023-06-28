@@ -48,6 +48,11 @@ export const InputModal: React.FC<InputModalProps> = ({ text, id }) => {
   const [images, setImages] = useState<ImagesInterface[]>([])
   const [imageUrls, setImageUrls] = useState<ImageUrlInterface[]>([])
 
+  
+  const addNewSize = () => {
+    setstock([...stock, { size: '', quantity: 0 }]);
+  };
+
   const uploadImageToFirebase = async (images: ImagesInterface[]) => {
     await Promise.all(
       images.map(async (img: any) => {
@@ -210,6 +215,11 @@ export const InputModal: React.FC<InputModalProps> = ({ text, id }) => {
                   </FormLabel>
                 </div>
               ))}
+              <button type="button" className="w-full px-4 py-2 text-lg font-medium text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:bg-indigo-200"
+                disabled={stock[stock.length-1].size==""||stock[stock.length-1].quantity<=0}
+                onClick={addNewSize}>
+                  Add another Size
+              </button>
 
               <FormLabel
                 htmlFor="images"
