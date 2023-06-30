@@ -7,8 +7,10 @@ import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 import { store, persistor } from "../store";
 import { PersistGate } from "redux-persist/integration/react";
+import { SessionProvider } from "next-auth/react"
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component, pageProps: { session, ...pageProps }, }: AppProps) {
   const router = useRouter();
 
   if (
@@ -19,28 +21,32 @@ export default function App({ Component, pageProps }: AppProps) {
     router.pathname === "/admin/product/add"
   )
     return (
+      <SessionProvider session={session}>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <ChakraProvider>
+              <TitleProvider>
+                <Component {...pageProps} />
+              </TitleProvider>
+            </ChakraProvider>
+          </PersistGate>
+        </Provider>
+      </SessionProvider>
+    );
+
+  return (
+    <SessionProvider session={session}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ChakraProvider>
             <TitleProvider>
-              <Component {...pageProps} />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
             </TitleProvider>
           </ChakraProvider>
         </PersistGate>
       </Provider>
-    );
-
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ChakraProvider>
-          <TitleProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </TitleProvider>
-        </ChakraProvider>
-      </PersistGate>
-    </Provider>
+    </SessionProvider>
   );
 }

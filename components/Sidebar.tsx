@@ -34,8 +34,11 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react"
+import { redirect } from "next/dist/server/api-utils";
 
 interface LinkItemProps {
   name: string;
@@ -56,6 +59,11 @@ const LinkItems: Array<LinkItemProps> = [
   },
   { name: "Add Product", icon: FiCompass, route: "/admin/product/add" },
 ];
+
+const handleSignOut =() => {
+  signOut({redirect:false})
+  // Router.replace('/admin/login')
+}
 
 export default function SidebarWithHeader({
   children,
@@ -178,7 +186,7 @@ interface MobileProps extends FlexProps {
   onOpen: () => void;
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
-  const router = useRouter();
+  const { data: session, status } = useSession()
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -235,9 +243,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Admin User</Text>
+                  <Text fontSize="sm">{session?.user?.name}</Text>
                   <Text fontSize="xs" color="gray.600">
-                    Admin
+                  {session?.user?.email}
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
@@ -249,7 +257,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem onClick={() => router.push("/admin/login")}>
+              <MenuItem onClick={handleSignOut}>
                 Sign out
               </MenuItem>
             </MenuList>

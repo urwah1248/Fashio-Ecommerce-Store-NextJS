@@ -18,6 +18,8 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
 import { useRouter } from "next/router"
 import Head from "next/head"
 
+import { signIn } from "next-auth/react"
+
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
@@ -25,10 +27,12 @@ export default function Login() {
   const router = useRouter()
   const toast = useToast()
 
-  const adminLogin = () => {
-    if (email === "admin@gmail.com" && password === "123456") {
-      router.push("./dashboard")
-    } else {
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+
+    await signIn('credentials', {email, password, redirect:false})
+    .then(() => router.push('./dashboard'))
+    .catch(() => {
       toast({
         title: "Wrong credentials",
         position: "top",
@@ -36,7 +40,10 @@ export default function Login() {
         duration: 9000,
         isClosable: true,
       })
-    }
+    })
+
+    // router.push("./dashboard")
+    
   }
   return (
     <>
@@ -63,46 +70,48 @@ export default function Login() {
             p={8}
             width={"400px"}
           >
-            <Stack spacing={4}>
-              <FormControl id="email" isRequired>
-                <FormLabel>Email address</FormLabel>
-                <Input type="email" onChange={(e) => setEmail(e.target.value)} />
-              </FormControl>
-              <FormControl id="password" isRequired>
-                <FormLabel>Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <InputRightElement h={"full"}>
-                    <Button
-                      variant={"ghost"}
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }
-                    >
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={4}>
+                <FormControl id="email" isRequired>
+                  <FormLabel>Email address</FormLabel>
+                  <Input type="email" onChange={(e) => setEmail(e.target.value)} />
+                </FormControl>
+                <FormControl id="password" isRequired>
+                  <FormLabel>Password</FormLabel>
+                  <InputGroup>
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <InputRightElement h={"full"}>
+                      <Button
+                        variant={"ghost"}
+                        onClick={() =>
+                          setShowPassword((showPassword) => !showPassword)
+                        }
+                      >
+                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
+                </FormControl>
 
-              <Stack spacing={10} pt={2}>
-                <Button
-                  onClick={adminLogin}
-                  loadingText="Submitting"
-                  size="lg"
-                  bg={"blue.400"}
-                  color={"white"}
-                  _hover={{
-                    bg: "blue.500",
-                  }}
-                >
-                  Login
-                </Button>
+                <Stack spacing={10} pt={2}>
+                  <Button
+                    onClick={handleSubmit}
+                    loadingText="Submitting"
+                    size="lg"
+                    bg={"blue.400"}
+                    color={"white"}
+                    _hover={{
+                      bg: "blue.500",
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Stack>
               </Stack>
-            </Stack>
+            </form>
           </Box>
         </Stack>
       </Flex>
