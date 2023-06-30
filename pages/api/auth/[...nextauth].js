@@ -23,7 +23,7 @@ export const authOptions = {
         }
 
         return {
-          id: '001',
+          image: '/logo.png',
           name: "Admin",
           email: "admin@gmail.com"
         }
