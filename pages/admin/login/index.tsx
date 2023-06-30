@@ -13,12 +13,12 @@ import {
   Avatar,
   useToast,
 } from "@chakra-ui/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
-import { useRouter } from "next/router"
+import Router, { useRouter } from "next/router"
 import Head from "next/head"
 
-import { signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
@@ -27,24 +27,32 @@ export default function Login() {
   const router = useRouter()
   const toast = useToast()
 
+  const {status} = useSession();
+
+  useEffect(() => {
+    if(status === 'authenticated'){
+      Router.replace('/admin/dashboard')
+    }
+  }, [status])
+
   const handleSubmit = async (e:any) => {
     e.preventDefault();
 
-    await signIn('credentials', {email, password, redirect:false})
-    .then(() => router.push('./dashboard'))
-    .catch(() => {
-      toast({
-        title: "Wrong credentials",
-        position: "top",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      })
-    })
+    const res = await signIn('credentials', {email, password, redirect:false})
 
-    // router.push("./dashboard")
-    
+    if(res?.ok){
+      router.push('./dashboard')
+      return null
+    }
+    toast({
+      title: "Wrong credentials",
+      position: "top",
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    })
   }
+
   return (
     <>
       <Head>

@@ -3,12 +3,10 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   TableCaption,
-  TableContainer,
   Button,
 } from '@chakra-ui/react'
 import axios from "axios"
@@ -65,9 +63,9 @@ const ProductsTable = () => {
                   <img width={250} className="object-cover h-44" src={data.images[0]&&data.images[0].thumbnail} alt="asd" />
                 </Td>
                 <Td p={1}>
-                  {data.stock.map((size:any) => {
+                  {data.stock.map((size:any, i:number) => {
                     return (
-                      <div className=" my-2 border-2 border-black rounded-md flex">
+                      <div key={i} className=" my-2 border-2 border-black rounded-md flex">
                         <span className="mr-2 font-semibold bg-black text-white p-1 text-center rounded-sm">{size.size}</span>
                         <span className="text-center p-1">{size.quantity}</span>
                       </div>

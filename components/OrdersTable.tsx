@@ -3,14 +3,9 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
-  TableContainer,
-  Button,
-  Select,
 } from '@chakra-ui/react'
 
 const OrdersTable = () => {
@@ -53,19 +48,19 @@ const OrdersTable = () => {
             {/* <Th>Status</Th> */}
           </Tr>
         </Thead>
-        {ordersData.map((data: any, i) => {
+          <Tbody>
+        {ordersData.map((data: any, index) => {
           return (
-            <Tbody key={i}>
-              <Tr>
-                <Td p={2} textAlign="center"> {i + 1}</Td>
+              <Tr key={index}>
+                <Td p={2} textAlign="center"> {index + 1}</Td>
                 <Td p={2}>
                   <p><span className="font-semibold">ID:</span> {data._id}</p>
                   <p><span className="font-semibold">Bill:</span> Rs. {subTotalPrice(data.cartItems)+200}</p>
                   <p><span className="font-semibold">Order Date:</span> {getDate(data.order_date)}</p>
                 </Td>
                 <Td p={2}>
-                  {data.cartItems.map((item:any) => {
-                    return <p>{item.quantity}x {item.name} ({item.size})</p>
+                  {data.cartItems.map((item:any, index:number) => {
+                    return <p key={index}>{item.quantity}x {item.name} ({item.size})</p>
                   })}
                 </Td>
                 <Td p={2}>
@@ -89,9 +84,9 @@ const OrdersTable = () => {
                   <Button width="full" disabled={data.status}>Change</Button>
                 </Td> */}
               </Tr>
-            </Tbody>
           )
         })}
+        </Tbody>
       </Table>
     </div>
   )
