@@ -13,7 +13,7 @@ const AddAndRemoveToCartReducer  = (state = INITIAL_STATE, action: any) => {
             }
         case ActionTypes.REMOVE_FROM_CART:
             const itemToRemove = state.cartItems.filter((product: any) => {
-                return product.id !== action.payload.id
+                return product !== action.payload
             })
             return {
                 ...state,
