@@ -56,8 +56,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <hr />
-      <div className="flex h-8 py-0 font-inter justify-center items-center">
+      <div className="flex h-8 mb-0 py-0 font-inter justify-center items-center bg-zinc-900 text-gray-100">
         <p className='m-0'>© Fashio.pk | 2023</p>
       </div>
     </footer>
