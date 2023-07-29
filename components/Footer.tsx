@@ -6,7 +6,7 @@ import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className='relative top-1'>
       <hr />
       <div id="links"
       className='grid grid-cols-1 md:grid-cols-3 mx-12 md:mx-24 tracking-tighter py-4 gap-4'>
@@ -57,7 +57,7 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div className="flex h-8 py-0 font-inter justify-center items-center">
+      <div className="flex h-8 mb-0 py-0 font-inter justify-center items-center bg-zinc-900 text-gray-100">
         <p className='m-0'>© Fashio.pk | 2023</p>
       </div>
     </footer>
