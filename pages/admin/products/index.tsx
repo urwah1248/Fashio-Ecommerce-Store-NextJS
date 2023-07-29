@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 
 const Products = () => {
   
-  const {status, data} = useSession();
+  const {status} = useSession();
 
   useEffect(() => {
     if(status === 'unauthenticated'){

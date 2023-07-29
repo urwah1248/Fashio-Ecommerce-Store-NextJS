@@ -45,9 +45,18 @@ export default function Layout({ children, ...props }: Props) {
     <>
       <Head>
         <title>{title}</title>
-        <meta name="description" content="E commerce Store" />
+        <meta name="description" content="Fashio Store | Online Jewelry Shopping" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+
+        <meta property="og:title" content="Fashio Store | Online Jewelry Shopping" key="title" />
+        <meta property="og:description" content="Shop for beautiful jewelry we offer." key="description" />
+        <meta property="og:image" content="%PUBLIC_URL%/preview.png" key="image" />
+
+        <meta name="twitter:title" content="Fashio Store | Online Jewelry Shopping" key="twitterTitle"/>
+        <meta name="twitter:image" content="%PUBLIC_URL%/preview.png" key="twitterpreview"/>
+        <meta name="twitter:description" content="Online Shopping store selling beautiful and elegant jewelry for Women." key="twitterdescription"/>
+
       </Head>
 
       <div className="flex min-h-screen flex-col justify-between bg-gray-100">

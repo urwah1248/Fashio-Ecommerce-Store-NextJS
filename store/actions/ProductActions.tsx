@@ -11,7 +11,7 @@ const AddToCartAction = (product: Dispatch<any>) => {
 }
 
 const RemoveFromCartAction = (product: Dispatch<any>) => {
-    return (dispatch: any) => {        
+    return (dispatch: any) => {
         dispatch({
             type: ActionTypes.REMOVE_FROM_CART,
             payload: product

@@ -116,16 +116,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+      <Flex h="40" alignItems="center" mx="8" justifyContent="space-between">
           <Image
-            src="/logo.png"
+            src="/square-logo.png"
             alt="Picture of the author"
-            width={100}
-            height={50}
-            className="object-cover h-12 opacity-70 hover:opacity-100 transition-[500ms]"
+            width={496}
+            height={271}
+            className="object-fit opacity-70 hover:opacity-100 transition-[500ms]"
           />{" "}
-        </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
 
@@ -216,9 +214,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         <Image
           src="/logo.png"
           alt="Picture of the author"
-          width={100}
-          height={50}
-          className="object-cover h-12 opacity-70 hover:opacity-100 transition-[500ms]"
+          width={605}
+          height={118}
+          className='object-fit w-auto h-6 opacity-70 hover:opacity-100 transition-[500ms]'
         />
       </Text>
 

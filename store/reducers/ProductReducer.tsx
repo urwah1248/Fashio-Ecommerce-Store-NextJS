@@ -12,7 +12,7 @@ const AddAndRemoveToCartReducer  = (state = INITIAL_STATE, action: any) => {
                 cartItems: [...state.cartItems, action.payload]
             }
         case ActionTypes.REMOVE_FROM_CART:
-            const itemToRemove = state.cartItems.filter((product: any) => {
+            const itemToRemove = state.cartItems.filter((product: any, index) => {
                 return product !== action.payload
             })
             return {

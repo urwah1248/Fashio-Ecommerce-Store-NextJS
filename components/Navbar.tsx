@@ -37,9 +37,9 @@ const NavbarComponent = () => {
               <Image
                 src="/logo.png"
                 alt="Picture of the author"
-                width={100}
-                height={50}
-                className='object-cover h-12 opacity-70 hover:opacity-100 transition-[500ms]'
+                width={605}
+                height={118}
+                className='object-contain w-auto h-6 opacity-70 hover:opacity-100 transition-[500ms]'
               />
             </Link>
           </Navbar.Brand>
@@ -76,7 +76,7 @@ const NavbarComponent = () => {
               </li>
             </Nav>
           </Navbar.Collapse>
-          <div className='md:static p-2 m-2 md:m-0 hidden md:block text-gray-500 hover:text-black'>
+          <div className='md:static w-[200px] md:flex justify-end p-2 m-2 md:m-0 hidden text-gray-500 hover:text-black'>
             <Link href="/shop/cart"
               className={`${router.pathname === "/shop/cart" ? "pointer-events-none text-gray-300" : ""}`}
             ><CartButton count={cartItems.length}/></Link>

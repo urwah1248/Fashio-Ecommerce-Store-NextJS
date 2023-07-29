@@ -12,10 +12,10 @@ const Footer = () => {
       className='grid grid-cols-1 md:grid-cols-3 mx-12 md:mx-24 tracking-tighter py-4 gap-4'>
         <div className="">
           <Image
-          className='mx-auto h-28 md:h-fit object-cover'
-          src={"/logo.png"}
-          height={100}
-          width={200}
+          className='mx-auto my-2 md:h-fit'
+          src={"/square-logo.png"}
+          height={271}
+          width={496}
           alt='asdasdg'
           />
           <HStack className='justify-center'>

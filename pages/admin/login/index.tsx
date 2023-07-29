@@ -13,7 +13,7 @@ import {
   Avatar,
   useToast,
 } from "@chakra-ui/react"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
 import Router, { useRouter } from "next/router"
 import Head from "next/head"
@@ -35,7 +35,7 @@ export default function Login() {
     }
   }, [status])
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const res = await signIn('credentials', {email, password, redirect:false})
@@ -106,7 +106,7 @@ export default function Login() {
 
                 <Stack spacing={10} pt={2}>
                   <Button
-                    onClick={handleSubmit}
+                    type="submit"
                     loadingText="Submitting"
                     size="lg"
                     bg={"blue.400"}

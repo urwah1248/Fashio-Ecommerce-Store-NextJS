@@ -73,25 +73,25 @@ const ProductPage = ({ product, ...props }: Props) => {
       </div>
 
       <form onSubmit={handleSubmit}
-      className="md:w-2/5 right md:px-10 flex flex-col justify-evenly min-h-[550px] md:min-h-[450px]">
+      className="md:w-2/5 right md:px-10 flex flex-col justify-evenly min-h-[550px] md:max-h-[400px]">
         <h1 className='md:text-4xl lg:text-5xl text-center font-extrabold leading-0'>{product.title}</h1>
         <h4 className='font-normal'>{product.description}</h4>
         <h3 className='font-normal'>Rs. <span className="font-bold">{product.price}</span></h3>
 
-        <h4>Size:</h4>
-
-        <Radio.Group defaultValue={product.stock[0].size} buttonStyle="solid">
-          {
-            product.stock.map((size: any, index: number) => {
-              return (
-                <Radio.Button onChange={(e:any) => {setSize(e.target.value); setQuantity(1);setActiveIndex(index)}} value={size.size}>{size.size}</Radio.Button>
-              )
-            })
-          }
-        </Radio.Group>
-
-        <h4>Quantity:</h4>
         <div>
+          <h4>Size:</h4>
+          <Radio.Group defaultValue={product.stock[0].size} buttonStyle="solid">
+            {
+              product.stock.map((size: any, index: number) => {
+                return (
+                  <Radio.Button onChange={(e:any) => {setSize(e.target.value); setQuantity(1);setActiveIndex(index)}} value={size.size}>{size.size}</Radio.Button>
+                )
+              })
+            }
+          </Radio.Group>
+        </div>
+        <div>
+          <h4>Quantity:</h4>
           <div className='border-2 border-black w-fit rounded-lg select-none'>
             <div className='py-1 px-3 inline cursor-pointer'
              onClick={() => quantity>1&&setQuantity(quantity - 1)}>-</div>

@@ -2,9 +2,10 @@ import Featured from "../components/Featured";
 import { useEffect, useState } from "react";
 import { useTitle } from "@/context/titleContext";
 import FeaturedProducts from "@/components/FeaturedProducts";
+import { Product } from "@/types/product";
 
 interface Props {
-  products: any;
+  products: Product[];
 }
 
 export default function Home({ products, ...props }: Props) {
