@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image';
 import Link from "next/link"
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import 'bootstrap-icons/font/bootstrap-icons.css'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import CartButton from './CartButton';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Navbar from 'react-bootstrap/Navbar';
 
 const NavbarComponent = () => {

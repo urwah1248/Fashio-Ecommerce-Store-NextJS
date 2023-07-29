@@ -12,7 +12,7 @@ const Footer = () => {
       className='grid grid-cols-1 md:grid-cols-3 mx-12 md:mx-24 tracking-tighter py-4 gap-4'>
         <div className="">
           <Image
-          className='mx-auto my-2 md:h-fit'
+          className='mx-auto my-2 md:h-32 object-contain'
           src={"/square-logo.png"}
           height={271}
           width={496}

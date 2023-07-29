@@ -24,7 +24,7 @@ const FeaturedProducts = ({products,title, category="", ...props}:Props) => {
           .filter((product,index) => index<4)
           .map((product,index)  => {
               return (
-                  <Product className="mr-6 md:mr-0" key={index} product={product}/>
+                  <Product className="mr-6 w-4/6 md:mr-0" key={index} product={product}/>
               )
           })}
         </div>

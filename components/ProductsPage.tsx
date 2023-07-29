@@ -61,7 +61,7 @@ export default function ProductsPage({ title, category, ...props }: Props) {
         {products
           .filter((product: any) => product.category == category)
           .map((item: any) => {
-            return <Product key={item._id} product={item} />;
+            return <Product className={"w-5/6"} key={item._id} product={item} />;
           })}
       </div>
     </div>

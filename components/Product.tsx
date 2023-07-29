@@ -9,7 +9,7 @@ interface Props {
 
 const Product = ({ product, className, ...props }: Props) => {
   return (
-    <div className={'bg-white product-card inline-block transition-[250ms] border-transparent hover:border-black border-2 sm:w-[49%] md:w-[32%] lg:w-[300px] w-4/6 mt-4 rounded-md justify-center overflow-x-hidden p-2' + ` ${className}`}>
+    <div className={`bg-white product-card inline-block transition-[250ms] border-transparent hover:border-black border-2 sm:w-[49%] md:w-[32%] lg:w-[300px] mt-4 rounded-md justify-center overflow-x-hidden p-2 ${className}`}>
       <Link href={`/shop/product/${product._id}`} className='text-black'>
         <div className="">
           <img
